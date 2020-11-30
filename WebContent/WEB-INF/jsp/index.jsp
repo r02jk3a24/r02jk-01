@@ -9,6 +9,7 @@
 <body>
 <H1>It Works!</H1>
 <H2>データベース関連のサンプル</H2>
-<p>テーブルを作成する<a href="/dbInit">/dbInit</a>
+<p>テーブルを作成する<a href="/dbInit">/dbInit</a></p>
+<p>テーブルを検索する<a href="/dbSample">/dbSample</a></p>
 </body>
 </html>

@@ -8,5 +8,7 @@
 </head>
 <body>
 <H1>It Works!</H1>
+<H2>データベース関連のサンプル</H2>
+<p>テーブルを作成する<a href="/dbInit">/dbInit</a>
 </body>
 </html>

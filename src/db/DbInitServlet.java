@@ -59,10 +59,12 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table EMP(empno int,ename nvarchar(100))");
+		PreparedStatement pstmt = con.prepareStatement("create table EMP(empno intÅ@primary key,ename nvarchar(100))");
 		pstmt.executeUpdate();
 		PreparedStatement pstmt2 = con.prepareStatement("insert into EMP values(4129,'è¨ó—')");
 		pstmt2.executeUpdate();
+		PreparedStatement pstmt3 = con.prepareStatement("insert into EMP values(4130,'ëÂó—')");
+		pstmt3.executeUpdate();
 		out.println("table 'EMP' created.");
 		
 	}

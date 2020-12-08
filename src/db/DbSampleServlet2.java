@@ -19,14 +19,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbSampleServlet
  */
-@WebServlet("/dbSample")
-public class DbSampleServlet extends HttpServlet implements DatabaseComminInterface{
+@WebServlet("/dbSample2")
+public class DbSampleServlet2 extends HttpServlet implements DatabaseComminInterface{
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbSampleServlet() {
+    public DbSampleServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,22 +40,20 @@ public class DbSampleServlet extends HttpServlet implements DatabaseComminInterf
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			PreparedStatement pstmt = con.prepareStatement("select * from PROMEN");
+			PreparedStatement pstmt = con.prepareStatement("select * from EMP");
 			ResultSet rs = pstmt.executeQuery();
 			
 			ArrayList<String[]> resultList = new ArrayList<>();
 			
 			while(rs.next() == true) {
-				String[] ss = new String[3];
-				ss[0]=rs.getString("pro_id");
-				ss[1]=rs.getString("user_id");
-				ss[2]=rs.getString("leader_f");
-				
+				String[] ss = new String[2];
+				ss[0]=rs.getString("empno");
+				ss[1]=rs.getString("ename");
 				resultList.add(ss);
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample3.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample.jsp");
 			rd.forward(request, response);
 			
 			

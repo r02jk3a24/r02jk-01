@@ -24,12 +24,6 @@ for(String[] ss : resultList){
 	<td>
 	<%= ss[1] %>
 	</td>
-	<td>
-	<%= ss[2] %>
-	</td>
-	<td>
-	<%= ss[3] %>
-	</td>
 	</tr>
 	<%
 }

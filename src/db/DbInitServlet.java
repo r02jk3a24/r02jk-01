@@ -59,15 +59,15 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table PROMEM(pro_id int NOT NULL PRIMARY KEY,user_id int NOT NULL PRIMARY KEY,leader_f INT,FOREIGN KEY(pro_id) REFERENCES PRO(pro_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table PROMEN(pro_id int NOT NULL ,user_id int NOT NULL ,leader_f INT,PRIMARY KEY(pro_id,user_id),FOREIGN KEY(pro_id) REFERENCES PRO(pro_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
 		pstmt.executeUpdate();
-		out.println("table 'PROMAN' created.");
+		out.println("table 'PROMEN' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,1,1");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,1,1)");
 		pstmt2.executeUpdate();
 		
 	}

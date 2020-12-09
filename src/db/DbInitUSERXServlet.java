@@ -40,8 +40,9 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				dropEmp(out, con);
-				createEmp(out, con);
+				//dropEmp(out, con);
+				deleteEmp(out,con);
+				//createEmp(out, con);
 				insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
@@ -67,8 +68,15 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into USERX(user_name) values('A‚³‚ñ')");
+		
+		PreparedStatement pstmt2 = con.prepareStatement("insert into USERX(user_name) values('B‚³‚ñ')");
 		pstmt2.executeUpdate();
+		
+		PreparedStatement pstmt3 = con.prepareStatement("insert into USERX(user_name) values('C‚³‚ñ')");
+		pstmt3.executeUpdate();
+		PreparedStatement pstmt4 = con.prepareStatement("insert into USERX(user_name) values('D‚³‚ñ')");
+		pstmt4.executeUpdate();
+		
 		
 	}
 	
@@ -78,6 +86,15 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 		pstmt.executeUpdate();
 		out.println("table 'USERX' dropped.");
 		} catch (SQLException e) {}
+	}
+	
+private void deleteEmp(PrintWriter out, Connection con) throws SQLException {
+		
+		PreparedStatement pstmt5 = con.prepareStatement("delete from USERX where user_name='B‚³‚ñ'");
+		pstmt5.executeUpdate();
+		
+		
+		
 	}
 
 }

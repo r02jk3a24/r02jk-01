@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit3")
-public class DbInitPROServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit5")
+public class DbInitPROMENServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitPROServlet() {
+    public DbInitPROMENServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -59,24 +59,29 @@ public class DbInitPROServlet extends HttpServlet implements DatabaseComminInter
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table PRO(pro_id int IDENTITY(1,1) NOT NULL PRIMARY KEY,pro_name nvarchar(100),pro_partno INT,pro_date datetime)");
+		PreparedStatement pstmt = con.prepareStatement("create table PROMEN(pro_id int NOT NULL ,user_id int NOT NULL ,leader_f INT,PRIMARY KEY(pro_id,user_id),FOREIGN KEY(pro_id) REFERENCES PRO(pro_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
 		pstmt.executeUpdate();
-		out.println("table 'PRO' created.");
+		out.println("table 'PROMEN' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into PRO(pro_name,pro_partno,pro_date) values('ƒeƒXƒg‰Û‘è',4,GETDATE())");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,5,0)");
 		pstmt2.executeUpdate();
+		
+		PreparedStatement pstmt3 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,6,0)");
+		pstmt3.executeUpdate();
+		PreparedStatement pstmt4 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,7,0)");
+		pstmt4.executeUpdate();
 		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table PRO");
+		PreparedStatement pstmt = con.prepareStatement("drop table PROMEN");
 		pstmt.executeUpdate();
-		out.println("table 'PRO' dropped.");
+		out.println("table 'PROMEN' dropped.");
 		} catch (SQLException e) {}
 	}
 

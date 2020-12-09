@@ -42,7 +42,7 @@ public class DbInitPROMENServlet extends HttpServlet implements DatabaseComminIn
 				
 				//dropEmp(out, con);
 				//createEmp(out, con);
-				insertEmp(out,con);
+				//insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

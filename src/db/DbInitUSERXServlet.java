@@ -41,9 +41,9 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 				Connection con = DatabaseComminInterface.getConnection();
 				
 				//dropEmp(out, con);
-				deleteEmp(out,con);
+				//deleteEmp(out,con);
 				//createEmp(out, con);
-				insertEmp(out,con);
+				//insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

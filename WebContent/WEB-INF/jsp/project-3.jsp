@@ -7,12 +7,16 @@
 <title>課題登録画面</title>
 </head>
 <body>
+
+<form method="post" action="./Sotuken4">
 <p>課題名</p>
-<input type="Text" name="" value="" >
+<input type="Text" name="Kname" >
+<p>人数</p>
+<input type="Text" name="member" >
 
-<p>作業名</p>
-<input type="Text" name="" value="" >
+<p><input type="submit"  value="登録"></p>
 
-<p><button type="button" name="" value="">登録</button></p>
+</form>
+
 </body>
 </html>

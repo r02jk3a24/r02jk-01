@@ -7,7 +7,7 @@
 <title>参加課題一覧</title>
 </head>
 <body>
-<p><button type="button" name="" value="">新規課題登録</button></p>
+<p><button onclick="location.href='./Sotuken3'">新規課題登録</button></p>
 
 
 <table border=1>

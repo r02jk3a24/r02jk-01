@@ -30,6 +30,10 @@ for(String[] ss : resultList){
 	<td>
 	<%= ss[3] %>
 	</td>
+	<td>
+	<%= ss[4] %>
+	</td>
+	
 	</tr>
 	<%
 }

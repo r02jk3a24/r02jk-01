@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit2")
+public class DbInitServlet2 extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,7 +42,7 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 				
 				dropEmp(out, con);
 				createEmp(out, con);
-				insertEmp(out,con);
+				
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -59,24 +59,18 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table TASKITEM(pro_id int NOT NULL ,task_id int NOT NULL,user_id int NOT NULL,PRIMARY KEY(pro_id,task_id,user_id),FOREIGN KEY(pro_id,task_id) REFERENCES TASK(pro_id,task_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table EMP(empno int,ename nvarchar(100))");
 		pstmt.executeUpdate();
-		out.println("table 'TASKITEM' created.");
-		
-	}
-	
-	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
-		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into TASKMEN(pro_id,task_id,user_id) values(1,1,1)");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into EMP values(4129,'è¨ó—')");
 		pstmt2.executeUpdate();
+		out.println("table 'EMP' created.");
 		
 	}
-	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table TASKMEN");
+		PreparedStatement pstmt = con.prepareStatement("drop table EMP");
 		pstmt.executeUpdate();
-		out.println("table 'TASKMEN' dropped.");
+		out.println("table 'EMP' dropped.");
 		} catch (SQLException e) {}
 	}
 

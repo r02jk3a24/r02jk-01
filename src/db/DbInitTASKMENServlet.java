@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit7")
+public class DbInitTASKMENServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitTASKMENServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,9 +40,9 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				dropEmp(out, con);
-				createEmp(out, con);
-				insertEmp(out,con);
+				//dropEmp(out, con);
+				//createEmp(out, con);
+				//insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -59,9 +59,9 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table TASKITEM(pro_id int NOT NULL ,task_id int NOT NULL,user_id int NOT NULL,PRIMARY KEY(pro_id,task_id,user_id),FOREIGN KEY(pro_id,task_id) REFERENCES TASK(pro_id,task_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table TASKMEN(pro_id int NOT NULL ,task_id int NOT NULL,user_id int NOT NULL,PRIMARY KEY(pro_id,task_id,user_id),FOREIGN KEY(pro_id,task_id) REFERENCES TASK(pro_id,task_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
 		pstmt.executeUpdate();
-		out.println("table 'TASKITEM' created.");
+		out.println("table 'TASKMEN' created.");
 		
 	}
 	
@@ -69,6 +69,8 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 		
 		PreparedStatement pstmt2 = con.prepareStatement("insert into TASKMEN(pro_id,task_id,user_id) values(1,1,1)");
 		pstmt2.executeUpdate();
+		PreparedStatement pstmt3 = con.prepareStatement("insert into TASKMEN(pro_id,task_id,user_id) values(1,1,5)");
+		pstmt3.executeUpdate();
 		
 	}
 	

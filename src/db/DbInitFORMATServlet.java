@@ -74,6 +74,7 @@ public class DbInitFORMATServlet extends HttpServlet implements DatabaseComminIn
 		PreparedStatement pstmt4 = con.prepareStatement("insert into FORMAT(form_id,form_name) values(3,'テキストボックス')");
 		pstmt4.executeUpdate();
 		
+		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {

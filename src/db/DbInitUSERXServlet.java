@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit4")
+public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitUSERXServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,8 +40,9 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				dropEmp(out, con);
-				createEmp(out, con);
+				//dropEmp(out, con);
+				deleteEmp(out,con);
+				//createEmp(out, con);
 				insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
@@ -59,25 +60,41 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table PROMEN(pro_id int NOT NULL ,user_id int NOT NULL ,leader_f INT,PRIMARY KEY(pro_id,user_id),FOREIGN KEY(pro_id) REFERENCES PRO(pro_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table USERX(user_id int IDENTITY(1,1) NOT NULL PRIMARY KEY,user_name nvarchar(100))");
 		pstmt.executeUpdate();
-		out.println("table 'PROMEN' created.");
+		out.println("table 'USERX' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,1,1)");
+		
+		PreparedStatement pstmt2 = con.prepareStatement("insert into USERX(user_name) values('B‚³‚ñ')");
 		pstmt2.executeUpdate();
+		
+		PreparedStatement pstmt3 = con.prepareStatement("insert into USERX(user_name) values('C‚³‚ñ')");
+		pstmt3.executeUpdate();
+		PreparedStatement pstmt4 = con.prepareStatement("insert into USERX(user_name) values('D‚³‚ñ')");
+		pstmt4.executeUpdate();
+		
 		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table PROMEN");
+		PreparedStatement pstmt = con.prepareStatement("drop table USERX");
 		pstmt.executeUpdate();
-		out.println("table 'PROMEN' dropped.");
+		out.println("table 'USERX' dropped.");
 		} catch (SQLException e) {}
+	}
+	
+private void deleteEmp(PrintWriter out, Connection con) throws SQLException {
+		
+		PreparedStatement pstmt5 = con.prepareStatement("delete from USERX where user_name='B‚³‚ñ'");
+		pstmt5.executeUpdate();
+		
+		
+		
 	}
 
 }

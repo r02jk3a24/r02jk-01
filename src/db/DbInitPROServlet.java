@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit3")
+public class DbInitPROServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitPROServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,8 +40,8 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				dropEmp(out, con);
-				createEmp(out, con);
+				//dropEmp(out, con);
+				//createEmp(out, con);
 				insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
@@ -59,24 +59,24 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table PROMEN(pro_id int NOT NULL ,user_id int NOT NULL ,leader_f INT,PRIMARY KEY(pro_id,user_id),FOREIGN KEY(pro_id) REFERENCES PRO(pro_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table PRO(pro_id int IDENTITY(1,1) NOT NULL PRIMARY KEY,pro_name nvarchar(100),pro_partno INT,pro_date datetime)");
 		pstmt.executeUpdate();
-		out.println("table 'PROMEN' created.");
+		out.println("table 'PRO' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,1,1)");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into PRO(pro_name,pro_partno,pro_date) values('ƒeƒXƒg‰Û‘è',4,GETDATE())");
 		pstmt2.executeUpdate();
 		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table PROMEN");
+		PreparedStatement pstmt = con.prepareStatement("drop table PRO");
 		pstmt.executeUpdate();
-		out.println("table 'PROMEN' dropped.");
+		out.println("table 'PRO' dropped.");
 		} catch (SQLException e) {}
 	}
 

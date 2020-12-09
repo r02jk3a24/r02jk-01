@@ -27,9 +27,7 @@ for(String[] ss : resultList){
 	<td>
 	<%= ss[2] %>
 	</td>
-	<td>
-	<%= ss[3] %>
-	</td>
+	
 	</tr>
 	<%
 }

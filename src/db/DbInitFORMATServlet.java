@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit12")
+public class DbInitFORMATServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitFORMATServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -59,24 +59,28 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table TASKITEM(pro_id int NOT NULL ,task_id int NOT NULL,user_id int NOT NULL,PRIMARY KEY(pro_id,task_id,user_id),FOREIGN KEY(pro_id,task_id) REFERENCES TASK(pro_id,task_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table FORMAT(form_id int NOT NULL ,form_name nvarchar(100) NOT NULL,PRIMARY KEY(form_id))");
 		pstmt.executeUpdate();
-		out.println("table 'TASKITEM' created.");
+		out.println("table 'FORMAT' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into TASKMEN(pro_id,task_id,user_id) values(1,1,1)");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into FORMAT(form_id,form_name) values(1,'ラジオボタン')");
 		pstmt2.executeUpdate();
+		PreparedStatement pstmt3 = con.prepareStatement("insert into FORMAT(form_id,form_name) values(2,'チェックボックス')");
+		pstmt3.executeUpdate();
+		PreparedStatement pstmt4 = con.prepareStatement("insert into FORMAT(form_id,form_name) values(3,'テキストボックス')");
+		pstmt4.executeUpdate();
 		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table TASKMEN");
+		PreparedStatement pstmt = con.prepareStatement("drop table FORMAT");
 		pstmt.executeUpdate();
-		out.println("table 'TASKMEN' dropped.");
+		out.println("table 'FORMAT' dropped.");
 		} catch (SQLException e) {}
 	}
 

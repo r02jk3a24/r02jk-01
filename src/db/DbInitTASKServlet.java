@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit6")
+public class DbInitTASKServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitTASKServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,9 +40,9 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				dropEmp(out, con);
-				createEmp(out, con);
-				insertEmp(out,con);
+				//dropEmp(out, con);
+				//createEmp(out, con);
+				//insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -59,24 +59,24 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table TASKITEM(pro_id int NOT NULL ,task_id int NOT NULL,user_id int NOT NULL,PRIMARY KEY(pro_id,task_id,user_id),FOREIGN KEY(pro_id,task_id) REFERENCES TASK(pro_id,task_id),FOREIGN KEY(user_id) REFERENCES USERX(user_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table TASK(pro_id int NOT NULL ,task_id int IDENTITY(1,1) NOT NULL ,task_name nvarchar(100),task_partno INT,item_no INT,PRIMARY KEY(pro_id,task_id),FOREIGN KEY(pro_id) REFERENCES PRO(pro_id))");
 		pstmt.executeUpdate();
-		out.println("table 'TASKITEM' created.");
+		out.println("table 'TASK' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into TASKMEN(pro_id,task_id,user_id) values(1,1,1)");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into TASK(pro_id,task_name,task_partno,item_no) values(1,'ÉeÉXÉgçÏã∆',4,2)");
 		pstmt2.executeUpdate();
 		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table TASKMEN");
+		PreparedStatement pstmt = con.prepareStatement("drop table TASK");
 		pstmt.executeUpdate();
-		out.println("table 'TASKMEN' dropped.");
+		out.println("table 'TASK' dropped.");
 		} catch (SQLException e) {}
 	}
 

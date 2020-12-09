@@ -19,5 +19,9 @@
 <p>USERXテーブルを検索する<a href="/dbSample4">/dbSample4</a></p>
 <p>PROMENテーブルを作成する<a href="/dbInit5">/dbInit5</a></p>
 <p>PROMENテーブルを検索する<a href="/dbSample5">/dbSample5</a></p>
+<p>TASKテーブルを作成する<a href="/dbInit6">/dbInit6</a></p>
+<p>TASKテーブルを検索する<a href="/dbSample6">/dbSample6</a></p>
+<p>TASKMENテーブルを作成する<a href="/dbInit7">/dbInit6</a></p>
+<p>TASKMENテーブルを検索する<a href="/dbSample7">/dbSample6</a></p>
 </body>
 </html>

@@ -19,14 +19,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbSampleServlet
  */
-@WebServlet("/dbSample")
-public class DbSampleServlet extends HttpServlet implements DatabaseComminInterface{
+@WebServlet("/dbSample7")
+public class DbSampleTASKMENServlet extends HttpServlet implements DatabaseComminInterface{
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbSampleServlet() {
+    public DbSampleTASKMENServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

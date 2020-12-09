@@ -24,6 +24,7 @@ String[] iname = (String[])request.getSession().getAttribute("iname");
 String[] contents = (String[])request.getSession().getAttribute("contents");
 String[] choiceno = (String[])request.getSession().getAttribute("choiceno");
 String[] format = (String[])request.getSession().getAttribute("format");
+int count = 0;
 %>
 
 <form method="post" action="./sk5_5">
@@ -31,26 +32,39 @@ String[] format = (String[])request.getSession().getAttribute("format");
 <% 
 for(int i=0;i<itemno;i++){ 
 %>
-	<h3>項目<%=i+1 %>.<%=iname[i] %></h3>
+
+	
+	<table>
+	<tr>
+		<th>項目<%=i+1 %>.<%=iname[i] %></th>
+		<td>
 <%
 	for(int j=0;j<Integer.parseInt(choiceno[i]);j++){
+		
 		if(Integer.parseInt(format[i])==1){
 %>
-			<input type="radio" value="<%= j%>"><%=contents[j]%>
+			<input type="radio" name="radio<%=i %>" value="<%= j%>"><%=contents[count]%>
 <%
+			count+=1;
 		}else if(Integer.parseInt(format[i])==2){
 %>
-			<input type="checkbox" value="<%= j%>"><%=contents[j]%>
+			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>"><%=contents[count]%>
 <%
+			count+=1;
 		}else {
 %>
-			<%=contents[j]%><input type="text">
+			<input type="text">
 <%
 		}
 	}
-
+%>
+		</td>
+	</tr>
+	</table>
+<%
 } 
 %>
+	
 <p>
 この内容で登録しますか?
 </p>

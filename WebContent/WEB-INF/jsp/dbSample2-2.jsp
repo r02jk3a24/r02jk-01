@@ -26,6 +26,10 @@ for(String[] ss : resultList){
 	<td>
 	<%= ss[1] %>
 	</td>
+	<th>user_mail</th>
+	<td>
+	<%= ss[2] %>
+	</td>
 	</tr>
 	<%
 }

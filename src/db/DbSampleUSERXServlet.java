@@ -49,6 +49,7 @@ public class DbSampleUSERXServlet extends HttpServlet implements DatabaseComminI
 				String[] ss = new String[4];
 				ss[0]=rs.getString("user_id");
 				ss[1]=rs.getString("user_name");
+				ss[2]=rs.getString("user_mail");
 				
 				resultList.add(ss);
 			}

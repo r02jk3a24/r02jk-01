@@ -11,6 +11,9 @@
 
 <h1>作業登録</h1>
 
+<%String tname = (String)request.getSession().getAttribute("tname"); %>
+<h3>課題名　<%=tname %></h3>
+
 <table>
 <tr>
 	<td>作業名</td><td><input type="text" name="wname"></td>

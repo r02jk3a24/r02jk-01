@@ -42,13 +42,13 @@ public class Sotuken1 extends HttpServlet {
 			String userid = (String)request.getSession().getAttribute("userid");
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			PreparedStatement pstmt1 = con.prepareStatement("select user_name from USERX join PROMEN on (USERX.user_id = PROMEN.user_id) where user_id = ?");
+			PreparedStatement pstmt1 = con.prepareStatement("select user_name from USERX join PROMEN on (USERX.user_id = PROMEN.user_id) where USERX.user_id = ?");
 			pstmt1.setString(1, "1");
 			ResultSet rs1 = pstmt1.executeQuery();
 			rs1.next();
 			request.getSession().setAttribute("user_name", rs1.getString("user_name"));
 			
-			PreparedStatement pstmt2 = con.prepareStatement("select pro_id,pro_name,leader_f from PRO join PROMEN on(PRO.pro_id = PROMEN.pro_id) where user_id = ?");
+			PreparedStatement pstmt2 = con.prepareStatement("select pro_id,pro_name,leader_f from PRO join PROMEN on(PRO.pro_id = PROMEN.pro_id) where PROMEN.user_id = ?");
 			pstmt2.setString(1, "1");
 			ResultSet rs2 = pstmt2.executeQuery();
 			

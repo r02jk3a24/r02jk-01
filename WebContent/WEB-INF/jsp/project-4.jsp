@@ -8,16 +8,22 @@
 </head>
 <body>
 <p>4.メンバー登録画面</p>
-<form method="post" action="./sk5_1">
+<form method="post" action="./Sotuken4K">
+<p>↓リーダー</p>
 <% 
-int itemno = (int)request.getSession().getAttribute("member");
+int itemno = (int)request.getSession().getAttribute("pro_partno");
 for(int i=1; i<=itemno; i++){
 %>	
+
 <h3>メンバー名.<%=i %></h3>
-<input type="Text" name="Mname<%= i%>">
+<input type="Text" name="user_name_<%= i%>">
+
+
+
 <%
     }
 %>
+
 <p><input type="submit" value="登録"></p>
 </form>
 </body>

@@ -58,7 +58,7 @@ public class DbSampleREPOServlet extends HttpServlet implements DatabaseComminIn
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample4.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/db/dbSample4.jsp");
 			rd.forward(request, response);
 			
 			

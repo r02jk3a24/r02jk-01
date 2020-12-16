@@ -55,7 +55,7 @@ public class DbSampleUSERXServlet extends HttpServlet implements DatabaseComminI
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample2-2.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/db/dbSample2-2.jsp");
 			rd.forward(request, response);
 			
 			

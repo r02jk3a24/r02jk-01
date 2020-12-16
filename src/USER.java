@@ -51,18 +51,20 @@ public class USER extends HttpServlet implements DatabaseComminInterface{
 		request.setCharacterEncoding("UTF-8");
 		
 		//final String email=request.getParameter("email");
-		String email="112@jc-21.jp";
+		String email="113@jc-21.jp";
 		final String name=request.getParameter("name");
 		int s=0;
+		String id=null;
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
 				s=selectEmp(out,con,name);
 				if(s==0) {
 				insertEmp(out,con,email,name);
-				String id=selectId(out,con,name);
-				request.setAttribute(id, "user_id");
-				RequestDispatcher rd=request.getRequestDispatcher("/Sotuken1");
+				id=selectId(out,con,name);
+				request.getSession().setAttribute("userid",id);
+				request.getSession().setAttribute("name",name);
+				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/hello.jsp");
 				rd.forward(request, response);
 				}
 				else {
@@ -119,7 +121,7 @@ private String selectId(PrintWriter out, Connection con,String name) throws SQLE
 	pstmt4.setString(1, name);
 	ResultSet ss = pstmt4.executeQuery();
 	while(ss.next()==true) {
-		id=ss.getString("userid");
+		id=ss.getString("user_id");
 	}
 	return id;
 }

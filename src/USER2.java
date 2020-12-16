@@ -49,22 +49,26 @@ public class USER2 extends HttpServlet implements DatabaseComminInterface{
 		PrintWriter out = response.getWriter();
 		
 		//final String email=request.getParameter("email");
-		String email="112@jc-21.jp";
+		String email="113@jc-21.jp";
+		int h=0;
+		String id=null;
+		String name=null;
 		
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				int h=selectEmp(out,con,email);
-				
+				h=selectEmp(out,con,email);
 				if(h==1) {
 					RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/user.jsp");
 					rd.forward(request, response);
 				}
 				
 				else {
-					String id=selectId(out,con,email);
-					request.setAttribute(id, "userid");
-					RequestDispatcher rd=request.getRequestDispatcher("/Sotuken1");
+					id=selectId(out,con,email);
+					name=selectName(out,con,email);
+					request.getSession().setAttribute("userid",id);
+					request.getSession().setAttribute("name",name);
+					RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/hello.jsp");
 					rd.forward(request, response);
 				}
 				
@@ -95,6 +99,7 @@ private int selectEmp(PrintWriter out, Connection con,String email) throws SQLEx
 		if(rs.next()==false) {
 			h=1;
 		}
+		out.println(h);
 		
 		
 		return h;
@@ -111,7 +116,22 @@ private String selectId(PrintWriter out, Connection con,String email) throws SQL
 	while(ss.next()==true) {
 		id=ss.getString("user_id");
 	}
+	out.println(id);
 	return id;
+}
+private String selectName(PrintWriter out, Connection con,String email) throws SQLException {
+	
+	String name=null;
+	
+	PreparedStatement pstmt5 = con.prepareStatement("select user_name from USERX where user_mail=?");
+	
+	pstmt5.setString(1, email);
+	ResultSet sf = pstmt5.executeQuery();
+	while(sf.next()==true) {
+		name=sf.getString("user_name");
+	}
+	out.println(name);
+	return name;
 }
 }
 

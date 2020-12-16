@@ -42,7 +42,7 @@ public class Gamen9Servlet extends HttpServlet {
 			/*String PRO_id = (String)request.getAttribute("PRO_id");*/
 			
 			Connection con = DatabaseComminInterface.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT　PRO.pro_name as pname, REPO.repo_date as repodate　,  USERX.user_name as uname ,TASK.task_name as tname USERX.user_id as uid FROM PRO　"
+			PreparedStatement pstmt = con.prepareStatement("SELECT　PRO.pro_name as pname, REPO.repo_date as repodate　,  USERX.user_name as uname ,TASK.task_name as tname , USERX.user_id as uid FROM PRO　"
 					+ "JOIN　REPO on PRO.pro_id  = REPO.pro_id "
 					+ "JOIN PROMEN on PRO.pro_id　= PROMEN.pro_id "
 					+ "JOIN TASK on PRO.pro_id　= TASK.pro_id "

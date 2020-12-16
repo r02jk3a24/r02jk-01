@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit4")
-public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit12")
+public class DbInitFORMATServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitUSERXServlet() {
+    public DbInitFORMATServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +40,9 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				//dropEmp(out, con);
-				//deleteEmp(out,con);
-				//createEmp(out, con);
-				alterEmp(out, con);
-				//insertEmp(out,con);
-				updateEmp(out, con);
+				dropEmp(out, con);
+				createEmp(out, con);
+				insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -62,35 +59,19 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table USERX(user_id int IDENTITY(1,1) NOT NULL PRIMARY KEY,user_name nvarchar(100),user_mail nvarchar(100))");
+		PreparedStatement pstmt = con.prepareStatement("create table FORMAT(form_id int NOT NULL ,form_name nvarchar(100) NOT NULL,PRIMARY KEY(form_id))");
 		pstmt.executeUpdate();
-		out.println("table 'USERX' created.");
-		
-	}
-	
-	private void alterEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("alter table USERX ADD user_mail nvarchar(100)");
-		pstmt.executeUpdate();
-		out.println("table 'USERX' add.");
-		
-	}
-	
-	private void updateEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("update USERX SET user_mail='111@jc-21.jp'");
-		pstmt.executeUpdate();
-		out.println("table 'USERX' update.");
+		out.println("table 'FORMAT' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into USERX(user_mail) values('Bさん','111@jc-21.jp')");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into FORMAT(form_id,form_name) values(1,'ラジオボタン')");
 		pstmt2.executeUpdate();
-		
-		PreparedStatement pstmt3 = con.prepareStatement("insert into USERX(user_mail) values('Cさん','112@jc-21.jp')");
+		PreparedStatement pstmt3 = con.prepareStatement("insert into FORMAT(form_id,form_name) values(2,'チェックボックス')");
 		pstmt3.executeUpdate();
-		PreparedStatement pstmt4 = con.prepareStatement("insert into USERX(user_mail) values('Dさん','113@jc-21.jp')");
+		PreparedStatement pstmt4 = con.prepareStatement("insert into FORMAT(form_id,form_name) values(3,'テキストボックス')");
 		pstmt4.executeUpdate();
 		
 		
@@ -98,19 +79,10 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table USERX");
+		PreparedStatement pstmt = con.prepareStatement("drop table FORMAT");
 		pstmt.executeUpdate();
-		out.println("table 'USERX' dropped.");
+		out.println("table 'FORMAT' dropped.");
 		} catch (SQLException e) {}
-	}
-	
-private void deleteEmp(PrintWriter out, Connection con) throws SQLException {
-		
-		PreparedStatement pstmt5 = con.prepareStatement("delete from USERX where user_name='Bさん'");
-		pstmt5.executeUpdate();
-		
-		
-		
 	}
 
 }

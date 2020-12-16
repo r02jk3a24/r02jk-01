@@ -19,14 +19,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbSampleServlet
  */
-@WebServlet("/dbSample4")
-public class DbSampleUSERXServlet extends HttpServlet implements DatabaseComminInterface{
+@WebServlet("/dbSample7")
+public class DbSampleTASKMENServlet extends HttpServlet implements DatabaseComminInterface{
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbSampleUSERXServlet() {
+    public DbSampleTASKMENServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,22 +40,23 @@ public class DbSampleUSERXServlet extends HttpServlet implements DatabaseComminI
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			PreparedStatement pstmt = con.prepareStatement("select * from USERX");
+			PreparedStatement pstmt = con.prepareStatement("select * from TASKMEN");
 			ResultSet rs = pstmt.executeQuery();
 			
 			ArrayList<String[]> resultList = new ArrayList<>();
 			
 			while(rs.next() == true) {
-				String[] ss = new String[4];
-				ss[0]=rs.getString("user_id");
-				ss[1]=rs.getString("user_name");
-				ss[2]=rs.getString("user_mail");
+				String[] ss = new String[3];
+				ss[0]=rs.getString("pro_id");
+				ss[1]=rs.getString("task_id");
+				ss[2]=rs.getString("user_id");
+				
 				
 				resultList.add(ss);
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample2-2.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample3-2.jsp");
 			rd.forward(request, response);
 			
 			

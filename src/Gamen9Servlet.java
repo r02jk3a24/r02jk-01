@@ -47,7 +47,7 @@ public class Gamen9Servlet extends HttpServlet {
 					+ "JOIN PROMEN on PRO.pro_id　= PROMEN.pro_id "
 					+ "JOIN TASK on PRO.pro_id　= TASK.pro_id "
 					+ "JOIN USERX on PROMEN.user_id　= USERX.user_id "
-					+ "where PRO.pro_id ＝ ? order by REPO.user_id asc");
+					+ "where PRO.pro_id = ? order by REPO.user_id asc");
 			
 			/*参加者の報告を表示するのに必要な情報を抽出するsql*/
 			

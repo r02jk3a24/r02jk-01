@@ -42,7 +42,7 @@ public class Sotuken1 extends HttpServlet {
 			String userid = (String)request.getSession().getAttribute("userid");
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			PreparedStatement pstmt1 = con.prepareStatement("select user_name from USERX join PROMEN on (USERX.user_id = PROMEN.user_id) where USERX.user_id = ?");
+			PreparedStatement pstmt1 = con.prepareStatement("select user_name from USERX where USERX.user_id = ?");
 			pstmt1.setString(1, userid);
 			ResultSet rs1 = pstmt1.executeQuery();
 			rs1.next();

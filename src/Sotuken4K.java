@@ -20,13 +20,13 @@ import db.DatabaseComminInterface;
  * Servlet implementation class NewUserServlet
  */
 @WebServlet("/Sotuken4")
-public class Sotuken4 extends HttpServlet {
+public class Sotuken4K extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Sotuken4() {
+    public Sotuken4K() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,19 +39,25 @@ public class Sotuken4 extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("pro_name", request.getParameter("pro_name"));
 		request.getSession().setAttribute("pro_partno", Integer.parseInt(request.getParameter("pro_partno")));
+		int c = Integer.parseInt(request.getParameter("pro_partno"));
+		
+		
+	
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			PreparedStatement pro = con.prepareStatement("insert into PRO(pro_name, pro_partno, pro_date) values(?,?,sysdate)");
-			String pro_name = request.getParameter("pro_name");
-			String pro_partno = request.getParameter("pro_partno");
-			pro.setString(1,pro_name);
-			pro.setString(2,pro_partno);
-			ResultSet rs1 = pro.executeQuery();
+			PreparedStatement promen1 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(1,1)");
+			ResultSet rs1 = promen1.executeQuery();
 			rs1.next();
+			
+			for(int i=2; i>=c; i++) {
+				PreparedStatement promen2 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(?,0)");
+				promen2.setInt(1, i);
+				ResultSet rs2 = promen2.executeQuery();
+				rs2.next();	
+			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");
 			rd.forward(request, response);

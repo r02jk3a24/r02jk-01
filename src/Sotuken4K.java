@@ -19,7 +19,7 @@ import db.DatabaseComminInterface;
 /**
  * Servlet implementation class NewUserServlet
  */
-@WebServlet("/Sotuken4")
+@WebServlet("/Sotuken4K")
 public class Sotuken4K extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

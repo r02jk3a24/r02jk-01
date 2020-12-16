@@ -29,6 +29,14 @@
 		%>
 		<tr>
 			<%
+				if (WorkName==null) {
+				WorkName = s[0];
+			%>
+			
+			<%
+				}
+			%>
+			<%
 				if (WorkName.equals(s[0])) {
 			%>
 			<p><%=s[0]%></p>
@@ -41,7 +49,7 @@
 		
 					
 					<%
-						if (mae.equals(s[2])) {
+						if (mae.equals(s[2])==false) {
 					%><form action="./Gamen6" method="post">
 					<input	type="hidden" name="TUserid" value=<%=s[4]%>>
 					<input type="submit" value=<%=s[2]%> class="btn-square">

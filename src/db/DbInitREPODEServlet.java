@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit2")
-public class DbInitServlet2 extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit11")
+public class DbInitREPODEServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet2() {
+    public DbInitREPODEServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,7 +42,7 @@ public class DbInitServlet2 extends HttpServlet implements DatabaseComminInterfa
 				
 				dropEmp(out, con);
 				createEmp(out, con);
-				
+				insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -59,18 +59,28 @@ public class DbInitServlet2 extends HttpServlet implements DatabaseComminInterfa
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table EMP(empno int,ename nvarchar(100))");
+		PreparedStatement pstmt = con.prepareStatement("create table REPODE(pro_id int NOT NULL ,task_id int NOT NULL,user_id int NOT NULL,repo_date datetime,item_id int NOT NULL,con_id int NOT NULL,repo_con nvarchar(200),PRIMARY KEY(pro_id,task_id,user_id,repo_date,item_id,con_id),FOREIGN KEY(pro_id,task_id,user_id,repo_date) REFERENCES REPO(pro_id,task_id,user_id,repo_date),FOREIGN KEY(pro_id,task_id,item_id,con_id) REFERENCES TASKITEMDE(pro_id,task_id,item_id,con_id))");
 		pstmt.executeUpdate();
-		PreparedStatement pstmt2 = con.prepareStatement("insert into EMP values(4129,'è¨ó—')");
-		pstmt2.executeUpdate();
-		out.println("table 'EMP' created.");
+		out.println("table 'REPODE' created.");
 		
 	}
+	
+	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
+		
+		PreparedStatement pstmt2 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con) values(1,1,1,'2020-12-09 05:19:01.577',1,1,'ëIë')");
+		pstmt2.executeUpdate();
+		PreparedStatement pstmt3 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con) values(1,1,1,'2020-12-09 05:19:01.577',1,2,'îÒëIë')");
+		pstmt3.executeUpdate();
+		PreparedStatement pstmt4 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con) values(1,1,1,'2020-12-09 05:19:01.577',1,3,'îÒëIë')");
+		pstmt4.executeUpdate();
+		
+	}
+	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table EMP");
+		PreparedStatement pstmt = con.prepareStatement("drop table REPODE");
 		pstmt.executeUpdate();
-		out.println("table 'EMP' dropped.");
+		out.println("table 'REPODE' dropped.");
 		} catch (SQLException e) {}
 	}
 

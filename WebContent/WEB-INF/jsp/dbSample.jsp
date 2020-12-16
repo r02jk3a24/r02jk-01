@@ -18,15 +18,19 @@
 for(String[] ss : resultList){
 	%>
 	<tr>
-	<th>
+	<th>pro_id</th>
+	<td>
 	<%= ss[0] %>
-	</th>
+	</td>
+	<th>pro_name</th>
 	<td>
 	<%= ss[1] %>
 	</td>
+	<th>pro_partno</th>
 	<td>
 	<%= ss[2] %>
 	</td>
+	<th>pro_date</th>
 	<td>
 	<%= ss[3] %>
 	</td>

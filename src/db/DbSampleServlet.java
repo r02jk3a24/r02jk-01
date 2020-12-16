@@ -40,23 +40,29 @@ public class DbSampleServlet extends HttpServlet implements DatabaseComminInterf
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			PreparedStatement pstmt = con.prepareStatement("select * from TASKMEN");
+			PreparedStatement pstmt = con.prepareStatement("select * from REPODE");
 			ResultSet rs = pstmt.executeQuery();
 			
 			ArrayList<String[]> resultList = new ArrayList<>();
 			
 			while(rs.next() == true) {
-				String[] ss = new String[3];
+				String[] ss = new String[7];
 				ss[0]=rs.getString("pro_id");
 				ss[1]=rs.getString("task_id");
 				ss[2]=rs.getString("user_id");
+				ss[3]=rs.getString("repo_date");
+				ss[4]=rs.getString("item_id");
+				ss[5]=rs.getString("con_id");
+				ss[6]=rs.getString("repo_con");
+				
+				
 				
 				
 				resultList.add(ss);
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample3.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample7.jsp");
 			rd.forward(request, response);
 			
 			

@@ -18,9 +18,11 @@
 for(String[] ss : resultList){
 	%>
 	<tr>
-	<th>
+	<th>form_id</th>
+	<td>
 	<%= ss[0] %>
-	</th>
+	</td>
+	<th>form_name</th>
 	<td>
 	<%= ss[1] %>
 	</td>

@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit4")
-public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit9")
+public class DbInitTASKITEMDEServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitUSERXServlet() {
+    public DbInitTASKITEMDEServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +40,9 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				//dropEmp(out, con);
-				//deleteEmp(out,con);
-				//createEmp(out, con);
-				alterEmp(out, con);
-				//insertEmp(out,con);
-				updateEmp(out, con);
+				dropEmp(out, con);
+				createEmp(out, con);
+				insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -62,55 +59,29 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table USERX(user_id int IDENTITY(1,1) NOT NULL PRIMARY KEY,user_name nvarchar(100),user_mail nvarchar(100))");
+		PreparedStatement pstmt = con.prepareStatement("create table TASKITEMDE(pro_id int NOT NULL ,task_id int NOT NULL,item_id int NOT NULL,con_id INT,con_name nvarchar(100),PRIMARY KEY(pro_id,task_id,item_id,con_id),FOREIGN KEY(pro_id,task_id,item_id) REFERENCES TASKITEM(pro_id,task_id,item_id))");
 		pstmt.executeUpdate();
-		out.println("table 'USERX' created.");
-		
-	}
-	
-	private void alterEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("alter table USERX ADD user_mail nvarchar(100)");
-		pstmt.executeUpdate();
-		out.println("table 'USERX' add.");
-		
-	}
-	
-	private void updateEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("update USERX SET user_mail='111@jc-21.jp'");
-		pstmt.executeUpdate();
-		out.println("table 'USERX' update.");
+		out.println("table 'TASKITEMDE' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into USERX(user_mail) values('B‚³‚ñ','111@jc-21.jp')");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into TASKITEMDE(pro_id,task_id,item_id,con_id,con_name) values(1,1,1,1,'‘I‘ðŽˆA')");
 		pstmt2.executeUpdate();
-		
-		PreparedStatement pstmt3 = con.prepareStatement("insert into USERX(user_mail) values('C‚³‚ñ','112@jc-21.jp')");
+		PreparedStatement pstmt3 = con.prepareStatement("insert into TASKITEMDE(pro_id,task_id,item_id,con_id,con_name) values(1,1,1,2,'‘I‘ðŽˆB')");
 		pstmt3.executeUpdate();
-		PreparedStatement pstmt4 = con.prepareStatement("insert into USERX(user_mail) values('D‚³‚ñ','113@jc-21.jp')");
+		PreparedStatement pstmt4 = con.prepareStatement("insert into TASKITEMDE(pro_id,task_id,item_id,con_id,con_name) values(1,1,1,3,'‘I‘ðŽˆC')");
 		pstmt4.executeUpdate();
-		
 		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table USERX");
+		PreparedStatement pstmt = con.prepareStatement("drop table TASKITEMDE");
 		pstmt.executeUpdate();
-		out.println("table 'USERX' dropped.");
+		out.println("table 'TASKITEMDE' dropped.");
 		} catch (SQLException e) {}
-	}
-	
-private void deleteEmp(PrintWriter out, Connection con) throws SQLException {
-		
-		PreparedStatement pstmt5 = con.prepareStatement("delete from USERX where user_name='B‚³‚ñ'");
-		pstmt5.executeUpdate();
-		
-		
-		
 	}
 
 }

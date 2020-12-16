@@ -8,21 +8,23 @@
 </head>
 <body>
 <H1>It Works!</H1>
-<H2>データベース関連のサンプル</H2>
-<p>テーブルを作成する<a href="/dbInit">/dbInit</a></p>
-<p>テーブルを検索する<a href="/dbSample">/dbSample</a></p>
-<p>画面3:高橋慶<a href="/Sotuken1">/Sotuken1</a></p>
-<p>画面5:村山隼也<a href="/sk5_1">/sk5_1</a></p>
-<p>PROテーブルを作成する<a href="/dbInit3">/dbInit3</a></p>
-<p>PROテーブルを検索する<a href="/dbSample3">/dbSample3</a></p>
-<p>USERXテーブルを作成する<a href="/dbInit4">/dbInit4</a></p>
-<p>USERXテーブルを検索する<a href="/dbSample4">/dbSample4</a></p>
-<p>PROMENテーブルを作成する<a href="/dbInit5">/dbInit5</a></p>
-<p>PROMENテーブルを検索する<a href="/dbSample5">/dbSample5</a></p>
-<p>TASKテーブルを作成する<a href="/dbInit6">/dbInit6</a></p>
-<p>TASKテーブルを検索する<a href="/dbSample6">/dbSample6</a></p>
-<p>TASKMENテーブルを作成する<a href="/dbInit7">/dbInit6</a></p>
-<p>TASKMENテーブルを検索する<a href="/dbSample7">/dbSample6</a></p>
+<H2>画面</H2>
+<p>画面1<a href="/Sotuken1">/Sotuken1</a></p>
+<p>画面5<a href="/sk5_1">/sk5_1</a></p>
+<p>画面9<a href="/Gamen9">/Gamen9</a></p>
+
+<H2>データベース検索</H2>
+<p>データベース検索へ<a href="/dbad2">/dbad2</a></p>
+
+
+<H2>データベース管理※触るな危険！</H2>
+<p>データベース管理画面へ<a href="/dbad">/dbad</a></p>
+
+<H2>ユーザー関連テスト中触るな危険</H2>
+<p>ユーザー登録画面へ<a href="/USER2">/USER2</a></p>
+
+
+
 
 </body>
 </html>

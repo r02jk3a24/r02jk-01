@@ -26,17 +26,25 @@ for(String[] ss : resultList){
 	<td>
 	<%= ss[1] %>
 	</td>
-	<th>item_id</th>
+	<th>user_id</th>
 	<td>
 	<%= ss[2] %>
 	</td>
-	<th>con_id</th>
+	<th>repo_date</th>
 	<td>
 	<%= ss[3] %>
 	</td>
-	<th>con_name</th>
+	<th>item_id</th>
 	<td>
 	<%= ss[4] %>
+	</td>
+	<th>coc_id</th>
+	<td>
+	<%= ss[5] %>
+	</td>
+	<th>repo_con</th>
+	<td>
+	<%= ss[6] %>
 	</td>
 	</tr>
 	<%

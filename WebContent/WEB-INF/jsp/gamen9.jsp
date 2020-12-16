@@ -29,10 +29,10 @@
 		%>
 		<tr>
 			<%
-				if (WorkName==null) {
+				if (WorkName == null) {
 				WorkName = s[0];
 			%>
-			
+
 			<%
 				}
 			%>
@@ -46,31 +46,40 @@
 			<%
 				}
 			%>
-		
-					
-					<%
-						if (mae.equals(s[2])==false) {
-					%><form action="./Gamen6" method="post">
-					<input	type="hidden" name="TUserid" value=<%=s[4]%>>
-					<input type="submit" value=<%=s[2]%> class="btn-square">
-					<%
-						mae = s[2];
-					%>
-					<%
-						}
-					%>
-					<form action=# method="post">
+
+
+			<%
+				if (mae == null) {
+					mae = s[2];
+			%>
+
+			<%
+				}
+			%>
+			<%
+				if (mae.equals(s[2]) == false) { //maeはnullにつき比較できない
+			%>
+			<form action="./Gamen6" method="post">
+				<input type="hidden" name="TUserid" value=<%=s[4]%>> <input
+					type="submit" value=<%=s[2]%> class="btn-square">
+				<%
+					mae = s[2];
+				%>
+				<%
+					}
+				%>
+				<form action=# method="post">
 					<div class="box30">
-					<!--アレイリストの課題名を取得し表示する  -->
-					<p><%=s[1]%></p>
-					<div class="box-title"><%=s[3]%></div>
-					<input type="hidden" name="name" value=Name> 
-					<input	type="hidden" name="Wname" value=<%=s[0]%>>
-					<input	type="hidden" name="Tname" value=<%=s[1]%>> 
-					<input type="submit" value="詳細へ" class="btn-square">
-				</div>
-			</form>
-			<!--アレイリストの作業名を取得し表示する,報告のボタンを押下すると押下した作業の報告画面への遷移を行う  -->
+						<!--アレイリストの課題名を取得し表示する  -->
+						<p><%=s[1]%></p>
+						<div class="box-title"><%=s[3]%></div>
+						<input type="hidden" name="name" value=Name> 
+						<input　type="hidden" name="Wname" value=<%=s[0]%>> 
+						<input　type="hidden" name="Tname" value=<%=s[1]%>> 
+						<input　type="submit" value="詳細へ" class="btn-square">
+					</div>
+				</form>
+				<!--アレイリストの作業名を取得し表示する,報告のボタンを押下すると押下した作業の報告画面への遷移を行う  -->
 		</tr>
 		<%
 			}

@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,16 +9,29 @@
 </head>
 <body>
 
-<h2>課題名</h2>
-<% 
-String wname = (String)request.getSession().getAttribute("wname");
 
+<% 
+String tname = (String)request.getSession().getAttribute("tname"); 
+String wname = (String)request.getSession().getAttribute("wname");
+List<String[]> workmember = (List<String[]>)request.getSession().getAttribute("workmember");
 %>
+<h2>課題名　<%=tname %></h2>
+
 <h2>作業名　<%=wname %></h2>
 
 <h3>参加メンバー</h3>
-
-
+<table>
+	<tr>
+<%
+	for(int i=0;i<workmember.size();i++){
+		String[] member = workmember.get(i);
+%>
+	<td><%=member[1] %> </td>
+<%
+	} 
+%>
+	</tr>
+</table>
 <%
 int itemno = (int)request.getSession().getAttribute("itemno");
 String[] iname = (String[])request.getSession().getAttribute("iname");

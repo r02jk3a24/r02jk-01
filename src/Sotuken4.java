@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -45,13 +44,12 @@ public class Sotuken4 extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			PreparedStatement pro = con.prepareStatement("insert into PRO(pro_name, pro_partno, pro_date) values(?,?,getdate())");
+			 PreparedStatement pro = con.prepareStatement("insert into PRO(pro_name, pro_partno, pro_date) values(?,?,getdate())");
 			String pro_name = request.getParameter("pro_name");
 			String pro_partno = request.getParameter("pro_partno");
 			pro.setString(1,pro_name);
 			pro.setString(2,pro_partno);
-			ResultSet rs1 = pro.executeQuery();
-			rs1.next();
+			pro.executeUpdate();
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");
 			rd.forward(request, response);

@@ -48,12 +48,12 @@ public class Sotuken4K extends HttpServlet {
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			PreparedStatement promen1 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(1,1)");
-			promen1.executeQuery();
+			promen1.executeUpdate();
 			
 			for(int i=2; i>=c; i++) {
 				PreparedStatement promen2 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(?,0)");
 				promen2.setInt(1, i);
-				promen2.executeQuery();	
+				promen2.executeUpdate();	
 			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");

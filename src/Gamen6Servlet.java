@@ -60,6 +60,7 @@ public class Gamen6Servlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		try {
+			request.setCharacterEncoding("UTF-8");
 			String TUser_id = request.getParameter("TUserid");
 			
 			Connection con = DatabaseComminInterface.getConnection();
@@ -67,7 +68,7 @@ public class Gamen6Servlet extends HttpServlet {
 					+ "JOIN　USERX on TASKMEN.user_id  = USERX.user_id "
 					+ "JOIN PRO on TASKMEN.pro_id　= PRO.pro_id "
 					+ "JOIN TASK on TASKMEN.task_id　= TASK.task_id "
-					+ "where USER.user_id = ? ");
+					+ "where TASKMEN.user_id = ? ");
 			
 			/*参加者の報告を表示するのに必要な情報を抽出するsql*/
 			

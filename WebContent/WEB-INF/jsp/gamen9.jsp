@@ -14,6 +14,7 @@
 		List<String[]> resultList = (List<String[]>) request.getAttribute("resultList");
 	String mae = null;
 	String WorkName = null;
+	String User=null;
 	%>
 
 	<a href="#" class="btn-flat-simple"><i class="fa fa-caret-right"></i>戻る</a>
@@ -37,9 +38,9 @@
 				}
 			%>
 			<%
-				if (WorkName.equals(s[0])) {
+				if (WorkName.equals(s[0])==false) {
 			%>
-			<p><%=s[0]%></p>
+				<p><%=s[0]%></p>
 			<%
 				WorkName = s[0];
 			%>
@@ -59,9 +60,10 @@
 			<%
 				if (mae.equals(s[2]) == false) { //maeはnullにつき比較できない
 			%>
-			<form action="./Gamen6" method="post">
-				<input type="hidden" name="TUserid" value=<%=s[4]%>> <input
-					type="submit" value=<%=s[2]%> class="btn-square">
+				<form action="./Gamen6" method="post">
+				<%= User=s[4] %>
+				<input type="hidden" name="TUserid" value=<%=User%>> 
+				<input type="submit" value=<%=s[2]%> class="btn-square">
 				<%
 					mae = s[2];
 				%>
@@ -71,8 +73,8 @@
 				<form action=# method="post">
 					<div class="box30">
 						<!--アレイリストの課題名を取得し表示する  -->
-						<p><%=s[1]%></p>
-						<div class="box-title"><%=s[3]%></div>
+						<p><%=s[1]%></p> <!--repodate  -->
+						<div class="box-title"><%=s[3]%></div> <!--tname(作業名)-->
 						<input type="hidden" name="name" value=Name> 
 						<input　type="hidden" name="Wname" value=<%=s[0]%>> 
 						<input　type="hidden" name="Tname" value=<%=s[1]%>> 

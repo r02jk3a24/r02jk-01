@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit8")
+public class DbInitTASKITEMServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitTASKITEMServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -59,28 +59,24 @@ public class DbInitServlet extends HttpServlet implements DatabaseComminInterfac
 
 
 	private void createEmp(PrintWriter out, Connection con) throws SQLException {
-		PreparedStatement pstmt = con.prepareStatement("create table REPODE(pro_id int NOT NULL ,task_id int NOT NULL,user_id int NOT NULL,repo_date datetime,item_id int NOT NULL,con_id int NOT NULL,repo_con nvarchar(200),PRIMARY KEY(pro_id,task_id,user_id,repo_date,item_id,con_id),FOREIGN KEY(pro_id,task_id,user_id,repo_date) REFERENCES REPO(pro_id,task_id,user_id,repo_date),FOREIGN KEY(pro_id,task_id,item_id,con_id) REFERENCES TASKITEMDE(pro_id,task_id,item_id,con_id))");
+		PreparedStatement pstmt = con.prepareStatement("create table TASKITEM(pro_id int NOT NULL ,task_id int NOT NULL,item_id int NOT NULL,form_id INT,con_no INT,item_name nvarchar(100),PRIMARY KEY(pro_id,task_id,item_id),FOREIGN KEY(pro_id,task_id) REFERENCES TASK(pro_id,task_id),FOREIGN KEY(form_id) REFERENCES FORMAT(form_id))");
 		pstmt.executeUpdate();
-		out.println("table 'REPODE' created.");
+		out.println("table 'TASKITEM' created.");
 		
 	}
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con) values(1,1,1,'2020-12-09 05:19:01.577',1,1,'選択')");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into TASKITEM(pro_id,task_id,item_id,form_id,con_no,item_name) values(1,1,1,1,3,'テスト項目')");
 		pstmt2.executeUpdate();
-		PreparedStatement pstmt3 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con) values(1,1,1,'2020-12-09 05:19:01.577',1,2,'非選択')");
-		pstmt3.executeUpdate();
-		PreparedStatement pstmt4 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con) values(1,1,1,'2020-12-09 05:19:01.577',1,3,'非選択')");
-		pstmt4.executeUpdate();
 		
 	}
 	
 	private void dropEmp(PrintWriter out, Connection con)  {
 		try {
-		PreparedStatement pstmt = con.prepareStatement("drop table REPODE");
+		PreparedStatement pstmt = con.prepareStatement("drop table TASKITEM");
 		pstmt.executeUpdate();
-		out.println("table 'REPODE' dropped.");
+		out.println("table 'TASKITEM' dropped.");
 		} catch (SQLException e) {}
 	}
 

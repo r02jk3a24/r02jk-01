@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DbInitServlet
  */
-@WebServlet("/dbInit")
-public class DbInitServlet extends HttpServlet implements DatabaseComminInterface {
+@WebServlet("/dbInit11")
+public class DbInitREPODEServlet extends HttpServlet implements DatabaseComminInterface {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbInitServlet() {
+    public DbInitREPODEServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -8,8 +8,23 @@
 </head>
 <body>
 <H1>It Works!</H1>
-<H2>データベース関連のサンプル</H2>
-<p>テーブルを作成する<a href="/dbInit">/dbInit</a></p>
-<p>テーブルを検索する<a href="/dbSample">/dbSample</a></p>
+<H2>画面</H2>
+<p>画面1<a href="/Sotuken1">/Sotuken1</a></p>
+<p>画面5<a href="/sk5_1">/sk5_1</a></p>
+<p>画面9<a href="/Gamen9">/Gamen9</a></p>
+
+<H2>データベース検索</H2>
+<p>データベース検索へ<a href="/dbad2">/dbad2</a></p>
+
+
+<H2>データベース管理※触るな危険！</H2>
+<p>データベース管理画面へ<a href="/dbad">/dbad</a></p>
+
+<H2>ユーザー関連テスト中触るな危険</H2>
+<p>ユーザー登録画面へ<a href="/USER2">/USER2</a></p>
+
+
+
+
 </body>
 </html>

@@ -38,8 +38,7 @@ public class Sotuken4K extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("pro_partno", Integer.parseInt(request.getParameter("pro_partno")));
-		int c = Integer.parseInt(request.getParameter("pro_partno"));
+		int c = Integer.parseInt(request.getParameter("PRON"));
 		
 		
 	
@@ -47,13 +46,13 @@ public class Sotuken4K extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			PreparedStatement promen1 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(1,1)");
-			promen1.executeUpdate();
+			PreparedStatement pstmt1 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(1,1)");
+			pstmt1.executeUpdate();
 			
 			for(int i=2; i>=c; i++) {
-				PreparedStatement promen2 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(?,0)");
-				promen2.setInt(1, i);
-				promen2.executeUpdate();	
+				PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(?,0)");
+				pstmt2.setInt(1, i);
+				pstmt2.executeUpdate();	
 			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");

@@ -28,7 +28,7 @@
 	for(int i=0;i<taskList.size();i++) {
 		String[] task = taskList.get(i);
 		String dis = "";
-		if(task[2]=="0"){
+		if(task[2].equals("0")){
 			dis = "disabled";
 		}
 %>

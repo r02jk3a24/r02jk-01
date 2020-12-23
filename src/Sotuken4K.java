@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -39,8 +38,7 @@ public class Sotuken4K extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("pro_partno", Integer.parseInt(request.getParameter("pro_partno")));
-		int c = Integer.parseInt(request.getParameter("pro_partno"));
+		int c = Integer.parseInt(request.getParameter("PRON"));
 		
 		
 	
@@ -48,15 +46,13 @@ public class Sotuken4K extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			PreparedStatement promen1 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(1,1)");
-			ResultSet rs1 = promen1.executeQuery();
-			rs1.next();
+			PreparedStatement pstmt1 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(1,1)");
+			pstmt1.executeUpdate();
 			
 			for(int i=2; i>=c; i++) {
-				PreparedStatement promen2 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(?,0)");
-				promen2.setInt(1, i);
-				ResultSet rs2 = promen2.executeQuery();
-				rs2.next();	
+				PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(?,0)");
+				pstmt2.setInt(1, i);
+				pstmt2.executeUpdate();	
 			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");

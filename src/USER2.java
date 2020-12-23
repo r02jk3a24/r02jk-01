@@ -19,14 +19,14 @@ import db.DatabaseComminInterface;
 /**
  * Servlet implementation class USER
  */
-@WebServlet("/USER")
-public class USER extends HttpServlet implements DatabaseComminInterface{
+@WebServlet("/USER2")
+public class USER2 extends HttpServlet implements DatabaseComminInterface{
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public USER() {
+    public USER2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,7 @@ public class USER extends HttpServlet implements DatabaseComminInterface{
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -42,35 +42,37 @@ public class USER extends HttpServlet implements DatabaseComminInterface{
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
 		response.setContentType("text/plain; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		request.setCharacterEncoding("UTF-8");
 		
 		//final String email=request.getParameter("email");
 		String email="113@jc-21.jp";
-		final String name=request.getParameter("name");
-		int s=0;
+		int h=0;
 		String id=null;
+		String name=null;
+		
 			try {
 				Connection con = DatabaseComminInterface.getConnection();
 				
-				s=selectEmp(out,con,name);
-				if(s==0) {
-				insertEmp(out,con,email,name);
-				id=selectId(out,con,name);
-				request.getSession().setAttribute("userid",id);
-				request.getSession().setAttribute("name",name);
-				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/hello.jsp");
-				rd.forward(request, response);
-				}
-				else {
-					RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/erroruser.jsp");
+				h=selectEmp(out,con,email);
+				if(h==1) {
+					RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/user.jsp");
 					rd.forward(request, response);
 				}
+				
+				else {
+					id=selectId(out,con,email);
+					name=selectName(out,con,email);
+					request.getSession().setAttribute("userid",id);
+					request.getSession().setAttribute("name",name);
+					RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/hello.jsp");
+					rd.forward(request, response);
+				}
+				
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace(out);
@@ -84,46 +86,52 @@ public class USER extends HttpServlet implements DatabaseComminInterface{
 			
 			
 		
-		
 	}
 	
-private void insertEmp(PrintWriter out, Connection con,String email,String name) throws SQLException {
+private int selectEmp(PrintWriter out, Connection con,String email) throws SQLException {
+		
+		int h=0;
+		
+		PreparedStatement pstmt2 = con.prepareStatement("select user_id from USERX where user_mail =?");
+		
+		pstmt2.setString(1, email);
+		ResultSet rs = pstmt2.executeQuery();
+		if(rs.next()==false) {
+			h=1;
+		}
+		out.println(h);
 		
 		
-		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into USERX(user_name,user_mail) values(?,?)");
-		
-		pstmt2.setString(1, name);
-		pstmt2.setString(2, email);
-		pstmt2.executeUpdate();
+		return h;
 	}
 
-private int selectEmp(PrintWriter out, Connection con,String name) throws SQLException {
-	
-	int s=0;
-	
-	PreparedStatement pstmt3 = con.prepareStatement("select user_name from USERX where user_name=?");
-	
-	pstmt3.setString(1, name);
-	ResultSet ss = pstmt3.executeQuery();
-	if(ss.next()==true) {
-		s=1;
-	}
-	return s;
-}
-
-private String selectId(PrintWriter out, Connection con,String name) throws SQLException {
+private String selectId(PrintWriter out, Connection con,String email) throws SQLException {
 	
 	String id=null;
 	
-	PreparedStatement pstmt4 = con.prepareStatement("select user_id from USERX where user_name=?");
+	PreparedStatement pstmt4 = con.prepareStatement("select user_id from USERX where user_mail=?");
 	
-	pstmt4.setString(1, name);
+	pstmt4.setString(1, email);
 	ResultSet ss = pstmt4.executeQuery();
 	while(ss.next()==true) {
 		id=ss.getString("user_id");
 	}
+	out.println(id);
 	return id;
+}
+private String selectName(PrintWriter out, Connection con,String email) throws SQLException {
+	
+	String name=null;
+	
+	PreparedStatement pstmt5 = con.prepareStatement("select user_name from USERX where user_mail=?");
+	
+	pstmt5.setString(1, email);
+	ResultSet sf = pstmt5.executeQuery();
+	while(sf.next()==true) {
+		name=sf.getString("user_name");
+	}
+	out.println(name);
+	return name;
 }
 }
 

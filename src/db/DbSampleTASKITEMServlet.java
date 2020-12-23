@@ -60,7 +60,7 @@ public class DbSampleTASKITEMServlet extends HttpServlet implements DatabaseComm
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample6.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/db/dbSample6.jsp");
 			rd.forward(request, response);
 			
 			

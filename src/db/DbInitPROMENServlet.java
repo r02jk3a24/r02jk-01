@@ -42,7 +42,7 @@ public class DbInitPROMENServlet extends HttpServlet implements DatabaseComminIn
 				
 				//dropEmp(out, con);
 				//createEmp(out, con);
-				//insertEmp(out,con);
+				insertEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -67,13 +67,13 @@ public class DbInitPROMENServlet extends HttpServlet implements DatabaseComminIn
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,5,0)");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(2,11,0)");
 		pstmt2.executeUpdate();
 		
-		PreparedStatement pstmt3 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,6,0)");
-		pstmt3.executeUpdate();
-		PreparedStatement pstmt4 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,7,0)");
-		pstmt4.executeUpdate();
+		//PreparedStatement pstmt3 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,6,0)");
+		//pstmt3.executeUpdate();
+		//PreparedStatement pstmt4 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,7,0)");
+		//pstmt4.executeUpdate();
 		
 	}
 	

@@ -56,7 +56,7 @@ public class DbSamplePROServlet extends HttpServlet implements DatabaseComminInt
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/db/dbSample.jsp");
 			rd.forward(request, response);
 			
 			

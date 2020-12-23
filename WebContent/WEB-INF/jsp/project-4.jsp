@@ -11,8 +11,8 @@
 <form method="post" action="./Sotuken4K">
 <p>↓リーダー</p>
 <% 
-int itemno = (int)request.getSession().getAttribute("pro_partno");
-for(int i=1; i<=itemno; i++){
+int pron = (int)request.getSession().getAttribute("pro_partno");
+for(int i=1; i<=pron; i++){
 %>	
 
 <h3>メンバー名.<%=i %></h3>
@@ -23,7 +23,7 @@ for(int i=1; i<=itemno; i++){
 <%
     }
 %>
-
+<input type=hidden name="PRON" value=<%= pron%>>
 <p><input type="submit" value="登録"></p>
 </form>
 </body>

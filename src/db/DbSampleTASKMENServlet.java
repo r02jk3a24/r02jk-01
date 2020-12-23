@@ -56,7 +56,7 @@ public class DbSampleTASKMENServlet extends HttpServlet implements DatabaseCommi
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample3-2.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/db/dbSample3-2.jsp");
 			rd.forward(request, response);
 			
 			

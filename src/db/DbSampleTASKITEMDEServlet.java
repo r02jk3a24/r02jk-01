@@ -59,7 +59,7 @@ public class DbSampleTASKITEMDEServlet extends HttpServlet implements DatabaseCo
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample5.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/db/dbSample5.jsp");
 			rd.forward(request, response);
 			
 			

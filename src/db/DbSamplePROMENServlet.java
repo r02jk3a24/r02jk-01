@@ -55,7 +55,7 @@ public class DbSamplePROMENServlet extends HttpServlet implements DatabaseCommin
 			}
 			request.setAttribute("resultList", resultList);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/dbSample3.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/db/dbSample3.jsp");
 			rd.forward(request, response);
 			
 			

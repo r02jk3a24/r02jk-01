@@ -33,7 +33,7 @@
 		}
 %>
 	<tr>
-		<td><%=task[1] %></td><td><%=task[2] %><%=dis %></td>
+		<td><%=task[1] %></td>
 		<td><button type="submit"name="work<%=task[0] %>" value="<%=task[0] %>" <%=dis %>>作業登録</button> <button type="submit"name="rep<%=task[0] %>" value="<%=task[0] %>">報告一覧</button></td>
 	</tr>
 <% }

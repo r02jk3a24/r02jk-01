@@ -16,24 +16,24 @@
 </form>
 
 <form method="post" action="./sk5_1">
-<table>
-<tr>
-	<td>課題名</td>
-</tr>
-<%	List<String[]> taskList = (List<String[]>)request.getSession().getAttribute("taskList");
-	
-	if(taskList==null){%>
-		課題はまだありません
-	<% }else{
-		for(int i=0;i<taskList.size();i++) {
-			String[] task = taskList.get(i);
-			String dis = "";
-			if(task[2]=="0"){
-				dis = "disabled";
-			}
+<% 	List<String[]> taskList = (List<String[]>)request.getSession().getAttribute("taskList");
+	if(taskList.size()==0){%>
+		<div>課題はまだありません</div>
+<%	}else{ %>
+		<table>
+		<tr>
+			<td>課題名</td>
+		</tr>
+<%	
+	for(int i=0;i<taskList.size();i++) {
+		String[] task = taskList.get(i);
+		String dis = "";
+		if(task[2]=="0"){
+			dis = "disabled";
+		}
 %>
 	<tr>
-		<td><%=task[1] %></td><td><%=task[2] %></td>
+		<td><%=task[1] %></td><td><%=task[2] %><%=dis %></td>
 		<td><button type="submit"name="work<%=task[0] %>" value="<%=task[0] %>" <%=dis %>>作業登録</button> <button type="submit"name="rep<%=task[0] %>" value="<%=task[0] %>">報告一覧</button></td>
 	</tr>
 <% }

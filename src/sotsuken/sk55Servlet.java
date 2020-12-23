@@ -52,7 +52,7 @@ public class sk55Servlet extends HttpServlet {
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			PreparedStatement pstmt1 = con.prepareStatement("insert into TASK(pro_id,task_name,taskpart_no,item_no) values(?,?,?,?)");
+			PreparedStatement pstmt1 = con.prepareStatement("insert into TASK(pro_id,task_name,task_partno,item_no) values(?,?,?,?)");
 			pstmt1.setString(1, pro_id);
 			pstmt1.setString(2, taskname);
 			pstmt1.setInt(3, workmember.size());

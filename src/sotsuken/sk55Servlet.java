@@ -80,7 +80,7 @@ public class sk55Servlet extends HttpServlet {
 			pstmts1.setString(2, taskname);
 			ResultSet rs2 = pstmt1.executeQuery();
 			rs2.next();
-			int item_id = rs1.getInt("item");
+			int item_id = rs2.getInt("item");
 			int count = 0;
 			
 			for(int i=0;i<taskpart_no;i++) {

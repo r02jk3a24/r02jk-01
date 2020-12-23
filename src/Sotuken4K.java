@@ -51,6 +51,9 @@ public class Sotuken4K extends HttpServlet {
 			PreparedStatement pstmt0 = con.prepareStatement("select pro_id from PRO where pro_name = ?");
 			pstmt0.setString(1,pname);
 			ResultSet rs = pstmt0.executeQuery();
+			while (rs.next()) {
+				
+			};
 			
 			PreparedStatement pstmt1 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,1,1)");
 			pstmt1.setInt(1,rs.getInt("pro_id"));

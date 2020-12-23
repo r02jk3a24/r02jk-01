@@ -91,6 +91,9 @@ public class sk55Servlet extends HttpServlet {
 				}
 			}
 			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-5.jsp");
+			rd.forward(request, response);
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
@@ -99,8 +102,7 @@ public class sk55Servlet extends HttpServlet {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-5.jsp");
-		rd.forward(request, response);
+		
 	}
 	
 	private void insertTaskmen(PrintWriter out, Connection con,String pro_id,String task_id,String user_id) throws SQLException {

@@ -84,10 +84,15 @@ public class sk55Servlet extends HttpServlet {
 			int count = 0;
 			
 			for(int i=0;i<taskpart_no;i++) {
+				
 				for(int j=0;j<Integer.parseInt(con_no[i]);j++) {
 					int id = item_id+i;
-					insertTaskitemde(out,con,pro_id,task_id,id,contents[count]);
-					count+=1;
+					if(form_id[i].equals("3")) {
+						insertTaskitemde(out,con,pro_id,task_id,id,null);
+					}else {
+						insertTaskitemde(out,con,pro_id,task_id,id,contents[count]);
+						count+=1;
+					}
 				}
 			}
 			

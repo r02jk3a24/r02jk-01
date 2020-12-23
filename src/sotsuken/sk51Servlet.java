@@ -62,7 +62,6 @@ public class sk51Servlet extends HttpServlet {
 		ArrayList<String[]> taskList = (ArrayList<String[]>)request.getSession().getAttribute("taskList");
 		String tname1 = "";
 		String tname2 = "";
-		
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			for(int i=0;i<taskList.size();i++) {

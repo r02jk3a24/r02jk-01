@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>メンバー登録完了</title>
+<title>作業登録完了</title>
 </head>
 <body>
 <h1>登録が完了しました。</h1>

@@ -39,6 +39,7 @@ public class sk55Servlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		
 		String pro_id = (String)request.getSession().getAttribute("pro_id");
 		String taskname = (String)request.getSession().getAttribute("wname");
 		int taskpart_no = (int)request.getSession().getAttribute("itemno");

@@ -81,7 +81,6 @@ public class sk55Servlet extends HttpServlet {
 			rs2.next();
 			int item_id = rs2.getInt("item");
 			int count = 0;
-			
 			for(int i=0;i<taskpart_no;i++) {
 				
 				for(int j=0;j<Integer.parseInt(con_no[i]);j++) {

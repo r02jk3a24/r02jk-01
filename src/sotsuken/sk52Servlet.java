@@ -31,6 +31,7 @@ public class sk52Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String[] membervalues = request.getParameterValues("membervalues");
 		ArrayList<String[]> username = (ArrayList<String[]>)request.getSession().getAttribute("username");
 		ArrayList<String[]> workmember = new ArrayList<String[]>();

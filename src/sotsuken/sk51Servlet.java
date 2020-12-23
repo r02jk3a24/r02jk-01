@@ -79,8 +79,9 @@ public class sk51Servlet extends HttpServlet {
 						ss[0]=rs2.getString("user_id");
 						ss[1]=rs2.getString("user_name");
 						
-						taskList.add(ss);
+						username.add(ss);
 					}
+					request.getSession().setAttribute("pro_id", task[0]);
 					request.getSession().setAttribute("username", username);
 					request.getSession().setAttribute("tname", tname1);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");

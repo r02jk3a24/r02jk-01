@@ -10,6 +10,7 @@
 <H1>It Works!</H1>
 <H2>画面</H2>
 <p>画面1<a href="/Sotuken1">/Sotuken1</a></p>
+<p>課題登録画面<a href="/Sotuken3">/Sotuken4</a></p>
 <p>画面5<a href="/sk5_1">/sk5_1</a></p>
 <p>画面9<a href="/Gamen9">/Gamen9</a></p>
 

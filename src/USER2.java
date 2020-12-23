@@ -48,7 +48,7 @@ public class USER2 extends HttpServlet implements DatabaseComminInterface{
 		response.setContentType("text/plain; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		//final String email=request.getParameter("email");
+		//final String email=session.getAttribute("email");
 		String email="113@jc-21.jp";
 		int h=0;
 		String id=null;

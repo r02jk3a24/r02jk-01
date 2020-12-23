@@ -28,6 +28,7 @@ public class sk54Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		request.getSession().setAttribute("contents", request.getParameterValues("contents"));
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-4.jsp");
 		rd.forward(request, response);

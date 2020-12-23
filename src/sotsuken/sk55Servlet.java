@@ -36,11 +36,12 @@ public class sk55Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String pro_id = (String)request.getSession().getAttribute("pro_id");
 		String taskname = (String)request.getSession().getAttribute("wname");
-		String taskpart_no = (String)request.getSession().getAttribute("itemno");
+		int taskpart_no = (int)request.getSession().getAttribute("itemno");
 		ArrayList<String[]> workmember = (ArrayList<String[]>)request.getSession().getAttribute("workmember");
 		ArrayList<String[]> taskList = (ArrayList<String[]>)request.getSession().getAttribute("taskList");
 		String[] form_id = (String[])request.getSession().getAttribute("format");
@@ -55,7 +56,7 @@ public class sk55Servlet extends HttpServlet {
 			pstmt1.setString(1, pro_id);
 			pstmt1.setString(2, taskname);
 			pstmt1.setInt(3, workmember.size());
-			pstmt1.setString(4, taskpart_no);
+			pstmt1.setInt(4, taskpart_no);
 			pstmt1.executeUpdate();
 			
 			PreparedStatement pstmts1 = con.prepareStatement("select task_id from TASK where pro_id = ? and task_name = ?");
@@ -70,7 +71,7 @@ public class sk55Servlet extends HttpServlet {
 				insertTaskmen(out,con,pro_id,task_id,member[0]);
 			}
 				
-			for(int i=0;i<Integer.parseInt(taskpart_no);i++) {
+			for(int i=0;i<taskpart_no;i++) {
 				insertTaskitem(out,con,pro_id,task_id,form_id[i],con_no[i],item_name[i]);
 			}
 			
@@ -82,7 +83,7 @@ public class sk55Servlet extends HttpServlet {
 			int item_id = rs1.getInt("item");
 			int count = 0;
 			
-			for(int i=0;i<Integer.parseInt(taskpart_no);i++) {
+			for(int i=0;i<taskpart_no;i++) {
 				for(int j=0;j<Integer.parseInt(con_no[i]);j++) {
 					int id = item_id+i;
 					insertTaskitemde(out,con,pro_id,task_id,id,contents[count]);

@@ -38,7 +38,7 @@ public class sk53Servlet extends HttpServlet {
 		for(int i=1;i<=itemno;i++) {
 			formatno[i-1]="format"+i;
 			format[i-1]=request.getParameter(formatno[i-1]);
-			if(format[i-1]=="3") {
+			if(format[i-1].equals("3")) {
 				choiceno[i-1] = "1";
 			}
 		}

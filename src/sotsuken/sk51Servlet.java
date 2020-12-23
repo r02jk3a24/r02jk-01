@@ -88,7 +88,7 @@ public class sk51Servlet extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");
 					rd.forward(request, response);
 				}else if(tname2!=null){
-					request.getSession().setAttribute("tname", task[0]);
+					request.getSession().setAttribute("tname", task[1]);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk9.jsp");
 					rd.forward(request, response);
 				}

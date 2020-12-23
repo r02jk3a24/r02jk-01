@@ -41,6 +41,7 @@ public class Sotuken4 extends HttpServlet {
 		request.getSession().setAttribute("pro_name", request.getParameter("pro_name"));
 		request.getSession().setAttribute("pro_partno", Integer.parseInt(request.getParameter("pro_partno")));
 		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();

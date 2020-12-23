@@ -53,7 +53,7 @@
 
 			<%
 				if (mae == null) {
-					
+					User=s[4];
 					mae = s[2];
 			%>
 				<form action="./Gamen6" method="post">

@@ -42,12 +42,12 @@ public class Gamen9Servlet extends HttpServlet {
 			/*String PRO_id = (String)request.getAttribute("PRO_id");*/
 			request.setCharacterEncoding("UTF-8");
 			Connection con = DatabaseComminInterface.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT　PRO.pro_name as pname, REPO.repo_date as repodate　,  USERX.user_name as uname ,TASK.task_name as tname , USERX.user_id as uid FROM PRO　"
+			PreparedStatement pstmt = con.prepareStatement("SELECT　REPO.repo_date as repodate　, PRO.pro_name as pname ,  USERX.user_name as uname ,TASK.task_name as tname , USERX.user_id as uid FROM PRO　"
 					+ "JOIN　REPO on PRO.pro_id  = REPO.pro_id "
 					+ "JOIN PROMEN on PRO.pro_id　= PROMEN.pro_id "
 					+ "JOIN TASK on PRO.pro_id　= TASK.pro_id "
 					+ "JOIN USERX on REPO.user_id　= USERX.user_id " /*userid 全表示*/
-					+ "where REPO.pro_id = ?  and USERX.user_id = REPO.user_id order by USERX.user_id asc");
+					+ "where REPO.pro_id = ?  and USERX.user_id = REPO.user_id  order by USERX.user_id asc");
 			
 			/*参加者の報告を表示するのに必要な情報を抽出するsql*/
 			

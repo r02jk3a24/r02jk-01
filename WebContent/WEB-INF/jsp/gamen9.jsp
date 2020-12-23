@@ -32,8 +32,9 @@
 			<%
 				if (WorkName == null) {
 				WorkName = s[0];
+				
 			%>
-
+				<p><%=s[0]%></p>
 			<%
 				}
 			%>
@@ -41,6 +42,7 @@
 				if (WorkName.equals(s[0])==false) {
 			%>
 				<p><%=s[0]%></p>
+				
 			<%
 				WorkName = s[0];
 			%>
@@ -51,19 +53,25 @@
 
 			<%
 				if (mae == null) {
+					User=s[4];
 					mae = s[2];
 			%>
+				<form action="./Gamen6" method="post">
+					<input type="hidden" name="TUserid" value="<%=User%>"> 
+					<input type="submit" value=<%=s[2]%> class="btn-square">
+					</form>
 
 			<%
 				}
 			%>
 			<%
 				if (mae.equals(s[2]) == false) { //maeはnullにつき比較できない
+					User=s[4];
 			%>
 				<form action="./Gamen6" method="post">
-				<%= User=s[4] %>
-				<input type="hidden" name="TUserid" value=<%=User%>> 
+				<input type="hidden" name="TUserid" value="<%=User%>"> 
 				<input type="submit" value=<%=s[2]%> class="btn-square">
+				</form>
 				<%
 					mae = s[2];
 				%>
@@ -76,8 +84,8 @@
 						<p><%=s[1]%></p> <!--repodate  -->
 						<div class="box-title"><%=s[3]%></div> <!--tname(作業名)-->
 						<input type="hidden" name="name" value=Name> 
-						<input　type="hidden" name="Wname" value=<%=s[0]%>> 
-						<input　type="hidden" name="Tname" value=<%=s[1]%>> 
+						<input　type="hidden" name="Wname" value="<%=s[0]%>"> 
+						<input　type="hidden" name="Tname" value="<%=s[1]%>"> 
 						<input　type="submit" value="詳細へ" class="btn-square">
 					</div>
 				</form>

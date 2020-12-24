@@ -51,7 +51,6 @@ public class sk55Servlet extends HttpServlet {
 		
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			
 			PreparedStatement pstmt1 = con.prepareStatement("insert into TASK(pro_id,task_name,task_partno,item_no) values(?,?,?,?)");
 			pstmt1.setString(1, pro_id);
 			pstmt1.setString(2, taskname);
@@ -62,7 +61,7 @@ public class sk55Servlet extends HttpServlet {
 			PreparedStatement pstmts1 = con.prepareStatement("select task_id from TASK where pro_id = ? and task_name = ?");
 			pstmts1.setString(1, pro_id);
 			pstmts1.setString(2, taskname);
-			ResultSet rs1 = pstmt1.executeQuery();
+			ResultSet rs1 = pstmts1.executeQuery();
 			rs1.next();
 			String task_id = rs1.getString("task_id");
 			
@@ -76,13 +75,12 @@ public class sk55Servlet extends HttpServlet {
 			}
 			
 			PreparedStatement pstmts2 = con.prepareStatement("select min(item_id)as item from TASKITEM where pro_id = ? and task_name = ?");
-			pstmts1.setString(1, pro_id);
-			pstmts1.setString(2, taskname);
-			ResultSet rs2 = pstmt1.executeQuery();
+			pstmts2.setString(1, pro_id);
+			pstmts2.setString(2, taskname);
+			ResultSet rs2 = pstmts2.executeQuery();
 			rs2.next();
-			int item_id = rs1.getInt("item");
+			int item_id = rs2.getInt("item");
 			int count = 0;
-			
 			for(int i=0;i<taskpart_no;i++) {
 				
 				for(int j=0;j<Integer.parseInt(con_no[i]);j++) {

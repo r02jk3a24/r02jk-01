@@ -49,7 +49,7 @@ public class USER2 extends HttpServlet implements DatabaseComminInterface{
 		PrintWriter out = response.getWriter();
 		
 		//final String email=session.getAttribute("email");
-		String email="113@jc-21.jp";
+		String email=request.getParameter("email");
 		int h=0;
 		String id=null;
 		String name=null;
@@ -59,6 +59,7 @@ public class USER2 extends HttpServlet implements DatabaseComminInterface{
 				
 				h=selectEmp(out,con,email);
 				if(h==1) {
+					request.getSession().setAttribute("email",email);
 					RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/user.jsp");
 					rd.forward(request, response);
 				}

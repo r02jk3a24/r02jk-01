@@ -1,6 +1,8 @@
 package jp.jc21.t.yoshizawa.authenticator;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +22,14 @@ public class AuthIndexServlet extends HttpServlet {
 
 		String url=null;
 		// for local test
-		url = getDevelopLoginUrl("bb16af26-015d-4dd4-8815-107e6d7b95c8");
+		//url = getDevelopLoginUrl("bb16af26-015d-4dd4-8815-107e6d7b95c8");
 
 		//for cloud server
-		//url = getProductionLoginUrl("5a76519d-15cb-46db-ac6e-8f9f67c5d8cb");
+		url = getProductionLoginUrl("5a76519d-15cb-46db-ac6e-8f9f67c5d8cb");
+		
+		//request.setAttribute("url", url);
+		//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/hello0.jsp");
+		//rd.forward(request, response);
 	}
 	
 	private String getDevelopLoginUrl(String AzureAppIdLocal) {

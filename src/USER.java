@@ -50,8 +50,8 @@ public class USER extends HttpServlet implements DatabaseComminInterface{
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		
-		//final String email=request.getParameter("email");
-		String email="113@jc-21.jp";
+		final String email=request.getParameter("email");
+		
 		final String name=request.getParameter("name");
 		int s=0;
 		String id=null;

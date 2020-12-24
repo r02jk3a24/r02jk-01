@@ -50,18 +50,26 @@ public class Sotuken4K extends HttpServlet {
 			Connection con = DatabaseComminInterface.getConnection();
 			PreparedStatement pstmt0 = con.prepareStatement("select pro_id from PRO where pro_name = ?");
 			pstmt0.setString(1,pname);
-			ResultSet rs = pstmt0.executeQuery();
-			rs.next();
+			ResultSet rs1 = pstmt0.executeQuery();
+			rs1.next();
 			
-			PreparedStatement pstmt1 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,1,1)");
-			pstmt1.setInt(1,rs.getInt("pro_id"));
-			pstmt1.executeUpdate();
 			
-			for(int i=2; i>=c; i++) {
-				PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,?,0)");
-				pstmt2.setInt(1,rs.getInt("pro_id"));
-				pstmt2.setInt(2, i);
-				pstmt2.executeUpdate();	
+			for(int i=1; i>=c; i++) {
+				PreparedStatement pstmt1 = con.prepareStatement("select user_id from USERX where user_name = ?");
+				pstmt1.setString(1,"un_" + i);
+				ResultSet rs2 = pstmt1.executeQuery();
+				rs2.next();
+				if(i==1) {
+					PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,?,1)");
+					pstmt2.setInt(1,rs1.getInt("pro_id"));
+					pstmt2.setInt(2, rs2.getInt("user_id"));
+					pstmt2.executeUpdate();	
+				}else {
+				PreparedStatement pstmt3 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,?,0)");
+				pstmt3.setInt(1,rs1.getInt("pro_id"));
+				pstmt3.setInt(2, rs2.getInt("user_id"));
+				pstmt3.executeUpdate();	
+				}
 			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");

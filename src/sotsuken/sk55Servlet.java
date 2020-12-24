@@ -86,9 +86,9 @@ public class sk55Servlet extends HttpServlet {
 				for(int j=0;j<Integer.parseInt(con_no[i]);j++) {
 					int id = item_id+i;
 					if(form_id[i].equals("3")) {
-						insertTaskitemde(out,con,pro_id,task_id,id,null);
+						insertTaskitemde(out,con,pro_id,task_id,id,(j+1),null);
 					}else {
-						insertTaskitemde(out,con,pro_id,task_id,id,contents[count]);
+						insertTaskitemde(out,con,pro_id,task_id,id,(j+1),contents[count]);
 						count+=1;
 					}
 				}
@@ -129,12 +129,13 @@ public class sk55Servlet extends HttpServlet {
 		
 	}
 	
-	private void insertTaskitemde(PrintWriter out, Connection con,String pro_id,String task_id,int item_id,String con_name) throws SQLException {
-		PreparedStatement pstmt4 = con.prepareStatement("insert into TASKITEMDE(pro_id,task_id,item_id,con_name) values(?,?,?,?)");
+	private void insertTaskitemde(PrintWriter out, Connection con,String pro_id,String task_id,int item_id,int con_id,String con_name) throws SQLException {
+		PreparedStatement pstmt4 = con.prepareStatement("insert into TASKITEMDE(pro_id,task_id,item_id,con_id,con_name) values(?,?,?,?,?)");
 		pstmt4.setString(1, pro_id);
 		pstmt4.setString(2, task_id);
 		pstmt4.setInt(3, item_id);
-		pstmt4.setString(4, con_name);
+		pstmt4.setInt(4, con_id);
+		pstmt4.setString(5, con_name);
 		pstmt4.executeUpdate();
 		
 	}

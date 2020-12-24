@@ -74,9 +74,9 @@ public class sk55Servlet extends HttpServlet {
 				insertTaskitem(out,con,pro_id,task_id,(i+1),form_id[i],con_no[i],item_name[i]);
 			}
 			
-			PreparedStatement pstmts2 = con.prepareStatement("select min(item_id)as item from TASKITEM where pro_id = ? and task_name = ?");
+			PreparedStatement pstmts2 = con.prepareStatement("select min(item_id)as item from TASKITEM where pro_id = ? and task_id = ?");
 			pstmts2.setString(1, pro_id);
-			pstmts2.setString(2, taskname);
+			pstmts2.setString(2, task_id);
 			ResultSet rs2 = pstmts2.executeQuery();
 			rs2.next();
 			int item_id = rs2.getInt("item");

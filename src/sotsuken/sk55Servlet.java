@@ -71,7 +71,7 @@ public class sk55Servlet extends HttpServlet {
 			}
 				
 			for(int i=0;i<taskpart_no;i++) {
-				insertTaskitem(out,con,pro_id,task_id,form_id[i],con_no[i],item_name[i]);
+				insertTaskitem(out,con,pro_id,task_id,(i+1),form_id[i],con_no[i],item_name[i]);
 			}
 			
 			PreparedStatement pstmts2 = con.prepareStatement("select min(item_id)as item from TASKITEM where pro_id = ? and task_name = ?");
@@ -117,13 +117,14 @@ public class sk55Servlet extends HttpServlet {
 		
 	}
 	
-	private void insertTaskitem(PrintWriter out, Connection con,String pro_id,String task_id,String form_id,String con_no,String item_name) throws SQLException {
-		PreparedStatement pstmt3 = con.prepareStatement("insert into TASKITEM(pro_id,task_id,form_id,con_no,item_name) values(?,?,?,?,?)");
+	private void insertTaskitem(PrintWriter out, Connection con,String pro_id,String task_id,int item_id,String form_id,String con_no,String item_name) throws SQLException {
+		PreparedStatement pstmt3 = con.prepareStatement("insert into TASKITEM(pro_id,task_id,item_id,form_id,con_no,item_name) values(?,?,?,?,?,?)");
 		pstmt3.setString(1, pro_id);
 		pstmt3.setString(2, task_id);
-		pstmt3.setString(3, form_id);
-		pstmt3.setString(4, con_no);
-		pstmt3.setString(5, item_name);
+		pstmt3.setInt(3, item_id);
+		pstmt3.setString(4, form_id);
+		pstmt3.setString(5, con_no);
+		pstmt3.setString(6, item_name);
 		pstmt3.executeUpdate();
 		
 	}

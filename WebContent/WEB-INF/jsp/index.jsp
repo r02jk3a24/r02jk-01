@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>r02jk-01</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/hello.css">
 </head>
 <body>
-<H1>It Works!</H1>
+<H1><span>It Works!</span></H1>
 <H2>画面</H2>
 <p>認証して画面1へ<a href="/USER3">/USER3-/Sotuken1</a></p>
 <p>課題登録画面<a href="/Sotuken3">/Sotuken4</a></p>

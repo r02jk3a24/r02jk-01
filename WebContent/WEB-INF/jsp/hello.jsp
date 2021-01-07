@@ -6,11 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>ようこそ</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/hello.css">
 </head>
 <body>
 <%String user_id = (String)request.getSession().getAttribute("userid"); %>
 <%String user_name = (String)request.getSession().getAttribute("name"); %>
-<H1>ようこそ<%=user_name %>さん</H1>
+<H1><span>ようこそ<%=user_name %>さん</span></H1>
 <H2>あなたのIDは<%=user_id %>です</H2>
 
 <form method="get" action="./Sotuken1">

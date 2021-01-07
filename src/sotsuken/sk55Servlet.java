@@ -51,8 +51,7 @@ public class sk55Servlet extends HttpServlet {
 		
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			
-			PreparedStatement pstmt1 = con.prepareStatement("insert into TASK(pro_id,task_name,taskpart_no,item_no) values(?,?,?,?)");
+			PreparedStatement pstmt1 = con.prepareStatement("insert into TASK(pro_id,task_name,task_partno,item_no) values(?,?,?,?)");
 			pstmt1.setString(1, pro_id);
 			pstmt1.setString(2, taskname);
 			pstmt1.setInt(3, workmember.size());
@@ -62,7 +61,7 @@ public class sk55Servlet extends HttpServlet {
 			PreparedStatement pstmts1 = con.prepareStatement("select task_id from TASK where pro_id = ? and task_name = ?");
 			pstmts1.setString(1, pro_id);
 			pstmts1.setString(2, taskname);
-			ResultSet rs1 = pstmt1.executeQuery();
+			ResultSet rs1 = pstmts1.executeQuery();
 			rs1.next();
 			String task_id = rs1.getString("task_id");
 			
@@ -72,24 +71,31 @@ public class sk55Servlet extends HttpServlet {
 			}
 				
 			for(int i=0;i<taskpart_no;i++) {
-				insertTaskitem(out,con,pro_id,task_id,form_id[i],con_no[i],item_name[i]);
+				insertTaskitem(out,con,pro_id,task_id,(i+1),form_id[i],con_no[i],item_name[i]);
 			}
 			
-			PreparedStatement pstmts2 = con.prepareStatement("select min(item_id)as item from TASKITEM where pro_id = ? and task_name = ?");
-			pstmts1.setString(1, pro_id);
-			pstmts1.setString(2, taskname);
-			ResultSet rs2 = pstmt1.executeQuery();
+			PreparedStatement pstmts2 = con.prepareStatement("select min(item_id)as item from TASKITEM where pro_id = ? and task_id = ?");
+			pstmts2.setString(1, pro_id);
+			pstmts2.setString(2, task_id);
+			ResultSet rs2 = pstmts2.executeQuery();
 			rs2.next();
-			int item_id = rs1.getInt("item");
+			int item_id = rs2.getInt("item");
 			int count = 0;
-			
 			for(int i=0;i<taskpart_no;i++) {
+				
 				for(int j=0;j<Integer.parseInt(con_no[i]);j++) {
 					int id = item_id+i;
-					insertTaskitemde(out,con,pro_id,task_id,id,contents[count]);
-					count+=1;
+					if(form_id[i].equals("3")) {
+						insertTaskitemde(out,con,pro_id,task_id,id,(j+1),null);
+					}else {
+						insertTaskitemde(out,con,pro_id,task_id,id,(j+1),contents[count]);
+						count+=1;
+					}
 				}
 			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-5.jsp");
+			rd.forward(request, response);
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace(out);
@@ -99,8 +105,7 @@ public class sk55Servlet extends HttpServlet {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-5.jsp");
-		rd.forward(request, response);
+		
 	}
 	
 	private void insertTaskmen(PrintWriter out, Connection con,String pro_id,String task_id,String user_id) throws SQLException {
@@ -112,22 +117,25 @@ public class sk55Servlet extends HttpServlet {
 		
 	}
 	
-	private void insertTaskitem(PrintWriter out, Connection con,String pro_id,String task_id,String form_id,String con_no,String item_name) throws SQLException {
-		PreparedStatement pstmt3 = con.prepareStatement("insert into TASKITEM(pro_id,task_id,form_id,con_no,item_name) values(?,?,?,?)");
+	private void insertTaskitem(PrintWriter out, Connection con,String pro_id,String task_id,int item_id,String form_id,String con_no,String item_name) throws SQLException {
+		PreparedStatement pstmt3 = con.prepareStatement("insert into TASKITEM(pro_id,task_id,item_id,form_id,con_no,item_name) values(?,?,?,?,?,?)");
 		pstmt3.setString(1, pro_id);
 		pstmt3.setString(2, task_id);
-		pstmt3.setString(3, con_no);
-		pstmt3.setString(4, item_name);
+		pstmt3.setInt(3, item_id);
+		pstmt3.setString(4, form_id);
+		pstmt3.setString(5, con_no);
+		pstmt3.setString(6, item_name);
 		pstmt3.executeUpdate();
 		
 	}
 	
-	private void insertTaskitemde(PrintWriter out, Connection con,String pro_id,String task_id,int item_id,String con_name) throws SQLException {
-		PreparedStatement pstmt4 = con.prepareStatement("insert into TASKITEMDE(pro_id,task_id,item_id,con_name) values(?,?,?,?)");
+	private void insertTaskitemde(PrintWriter out, Connection con,String pro_id,String task_id,int item_id,int con_id,String con_name) throws SQLException {
+		PreparedStatement pstmt4 = con.prepareStatement("insert into TASKITEMDE(pro_id,task_id,item_id,con_id,con_name) values(?,?,?,?,?)");
 		pstmt4.setString(1, pro_id);
 		pstmt4.setString(2, task_id);
 		pstmt4.setInt(3, item_id);
-		pstmt4.setString(4, con_name);
+		pstmt4.setInt(4, con_id);
+		pstmt4.setString(5, con_name);
 		pstmt4.executeUpdate();
 		
 	}

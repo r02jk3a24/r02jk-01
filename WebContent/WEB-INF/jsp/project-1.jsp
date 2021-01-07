@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>参加課題一覧</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/project1.css">
 </head>
 <body>
 <%String user_name = (String)request.getSession().getAttribute("user_name"); %>
@@ -28,13 +30,15 @@
 	for(int i=0;i<taskList.size();i++) {
 		String[] task = taskList.get(i);
 		String dis = "";
-		if(task[2]=="0"){
+		if(task[2].equals("0")){
 			dis = "disabled";
 		}
 %>
 	<tr>
-		<td><%=task[1] %></td><td><%=task[2] %><%=dis %></td>
-		<td><button type="submit"name="work<%=task[0] %>" value="<%=task[0] %>" <%=dis %>>作業登録</button> <button type="submit"name="rep<%=task[0] %>" value="<%=task[0] %>">報告一覧</button></td>
+		<td><%=task[1] %></td>
+		<td><button type="submit"name="work<%=task[0] %>" value="<%=task[0] %>" <%=dis %>>作業登録</button> 
+		<button type="submit"name="rep<%=task[0] %>" value="<%=task[0] %>">報告一覧</button> 
+		<button type="submit"name="list<%=task[0] %>" value="<%=task[0] %>">参加作業一覧</button></td>
 	</tr>
 <% }
 }%>	

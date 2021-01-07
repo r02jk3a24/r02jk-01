@@ -6,11 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザー名登録</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/hello.css">
 </head>
 <body>
 <%String user_mail = (String)request.getSession().getAttribute("user_mail"); %>
 
-<h1>そのユーザー名は、既に使用されています！</h1>
+<h1><span>そのユーザー名は、既に使用されています！</h1>
 
 <form method="post" action="./USER">
 

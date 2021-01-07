@@ -30,7 +30,7 @@ public class sk53Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		request.getSession().setAttribute("iname", request.getParameterValues("iname"));
-		String[] choiceno = (String[])request.getSession().getAttribute("choiceno");
+		String[] choiceno = request.getParameterValues("choiceno");
 		
 		int itemno = (int)request.getSession().getAttribute("itemno");
 		String[] formatno = new String[itemno];
@@ -38,7 +38,7 @@ public class sk53Servlet extends HttpServlet {
 		for(int i=1;i<=itemno;i++) {
 			formatno[i-1]="format"+i;
 			format[i-1]=request.getParameter(formatno[i-1]);
-			if(format[i-1]=="3") {
+			if(format[i-1].equals("3")) {
 				choiceno[i-1] = "1";
 			}
 		}

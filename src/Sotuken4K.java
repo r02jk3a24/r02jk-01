@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -38,6 +39,8 @@ public class Sotuken4K extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String pname = (String)request.getSession().getAttribute("pro_name");
 		int c = Integer.parseInt(request.getParameter("PRON"));
 		
 		
@@ -46,16 +49,31 @@ public class Sotuken4K extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			PreparedStatement pstmt1 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(1,1)");
-			pstmt1.executeUpdate();
+			PreparedStatement pstmt0 = con.prepareStatement("select pro_id from PRO where pro_name = ?");
+			pstmt0.setString(1,pname);
+			ResultSet rs1 = pstmt0.executeQuery();
+			rs1.next();
 			
-			for(int i=2; i>=c; i++) {
-				PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(user_id, leader_f) values(?,0)");
-				pstmt2.setInt(1, i);
-				pstmt2.executeUpdate();	
+			
+			for(int i=1; i>=c; i++) {
+				PreparedStatement pstmt1 = con.prepareStatement("select user_id from USERX where user_name = ?");
+				pstmt1.setString(1,"un_" + i);
+				ResultSet rs2 = pstmt1.executeQuery();
+				rs2.next();
+				if(i==1) {
+					PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,?,1)");
+					pstmt2.setInt(1,rs1.getInt("pro_id"));
+					pstmt2.setInt(2, rs2.getInt("user_id"));
+					pstmt2.executeUpdate();	
+				}else {
+				PreparedStatement pstmt3 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,?,0)");
+				pstmt3.setInt(1,rs1.getInt("pro_id"));
+				pstmt3.setInt(2, rs2.getInt("user_id"));
+				pstmt3.executeUpdate();	
+				}
 			}
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-5.jsp");
 			rd.forward(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace(out);
@@ -65,7 +83,6 @@ public class Sotuken4K extends HttpServlet {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
 		}
-		
 	
 	}
 

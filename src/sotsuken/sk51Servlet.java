@@ -56,6 +56,7 @@ public class sk51Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		ArrayList<String[]> taskList = (ArrayList<String[]>)request.getSession().getAttribute("taskList");
@@ -79,15 +80,18 @@ public class sk51Servlet extends HttpServlet {
 						ss[0]=rs2.getString("user_id");
 						ss[1]=rs2.getString("user_name");
 						
-						taskList.add(ss);
+						username.add(ss);
 					}
+					request.getSession().setAttribute("pro_id", task[0]);
 					request.getSession().setAttribute("username", username);
-					request.getSession().setAttribute("tname", tname1);
+					request.getSession().setAttribute("tname", task[1]);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");
 					rd.forward(request, response);
 				}else if(tname2!=null){
-					request.getSession().setAttribute("tname", tname2);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk9.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
+					rd.forward(request, response);
+				}else {
+					RequestDispatcher rd = request.getRequestDispatcher("/Gamen6");
 					rd.forward(request, response);
 				}
 			}

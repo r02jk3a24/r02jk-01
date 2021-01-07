@@ -43,6 +43,7 @@ public class DbInitPROServlet extends HttpServlet implements DatabaseComminInter
 				//dropEmp(out, con);
 				//createEmp(out, con);
 				//insertEmp(out,con);
+				updateEmp(out,con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -77,6 +78,14 @@ public class DbInitPROServlet extends HttpServlet implements DatabaseComminInter
 		PreparedStatement pstmt = con.prepareStatement("drop table PRO");
 		pstmt.executeUpdate();
 		out.println("table 'PRO' dropped.");
+		} catch (SQLException e) {}
+	}
+	
+	private void updateEmp(PrintWriter out, Connection con)  {
+		try {
+		PreparedStatement pstmt = con.prepareStatement("update PRO set pro_name='test2' where pro_id=2");
+		pstmt.executeUpdate();
+		out.println("table 'PRO' update.");
 		} catch (SQLException e) {}
 	}
 

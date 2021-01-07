@@ -8,7 +8,7 @@
 <title>ユーザー名登録</title>
 </head>
 <body>
-<%String user_mail = (String)request.getSession().getAttribute("user_mail"); %>
+<%String user_mail = (String)request.getSession().getAttribute("email"); %>
 
 
 

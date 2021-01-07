@@ -31,11 +31,12 @@ public class sk52Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String[] membervalues = request.getParameterValues("membervalues");
 		ArrayList<String[]> username = (ArrayList<String[]>)request.getSession().getAttribute("username");
 		ArrayList<String[]> workmember = new ArrayList<String[]>();
 		for(int i=0;i<membervalues.length;i++) {
-			workmember.add(username.get(i));
+			workmember.add(username.get(Integer.parseInt(membervalues[i])));
 		}
 		request.getSession().setAttribute("workmember", workmember);
 		request.getSession().setAttribute("itemno", Integer.parseInt(request.getParameter("itemno")));

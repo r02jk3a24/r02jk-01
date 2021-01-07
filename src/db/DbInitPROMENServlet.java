@@ -67,7 +67,7 @@ public class DbInitPROMENServlet extends HttpServlet implements DatabaseComminIn
 	
 	private void insertEmp(PrintWriter out, Connection con) throws SQLException {
 		
-		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(2,11,0)");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(2,14,1)");
 		pstmt2.executeUpdate();
 		
 		//PreparedStatement pstmt3 = con.prepareStatement("insert into PROMEN(pro_id,user_id,leader_f) values(1,6,0)");

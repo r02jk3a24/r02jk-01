@@ -43,9 +43,9 @@ public class DbInitUSERXServlet extends HttpServlet implements DatabaseComminInt
 				//dropEmp(out, con);
 				//deleteEmp(out,con);
 				//createEmp(out, con);
-				alterEmp(out, con);
+				//alterEmp(out, con);
 				//insertEmp(out,con);
-				updateEmp(out, con);
+				//updateEmp(out, con);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

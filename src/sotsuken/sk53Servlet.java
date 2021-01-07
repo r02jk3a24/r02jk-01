@@ -28,15 +28,21 @@ public class sk53Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		request.getSession().setAttribute("iname", request.getParameterValues("iname"));
-		request.getSession().setAttribute("choiceno", request.getParameterValues("choiceno"));
+		String[] choiceno = request.getParameterValues("choiceno");
+		
 		int itemno = (int)request.getSession().getAttribute("itemno");
 		String[] formatno = new String[itemno];
 		String[] format = new String[itemno];
 		for(int i=1;i<=itemno;i++) {
 			formatno[i-1]="format"+i;
 			format[i-1]=request.getParameter(formatno[i-1]);
+			if(format[i-1].equals("3")) {
+				choiceno[i-1] = "1";
+			}
 		}
+		request.getSession().setAttribute("choiceno", choiceno);
 		request.getSession().setAttribute("format", format);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-3.jsp");
 		rd.forward(request, response);

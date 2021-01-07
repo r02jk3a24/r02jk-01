@@ -11,7 +11,7 @@
 <body>
 <%
 	
-	List<String[]>  list	=	(List<String[]>)request.getAttribute("result");
+	List<String[]>  list	=	(List<String[]>)request.getAttribute("resultList");
 %>
  
 <a href="#" class="btn-flat-simple"><i class="fa fa-caret-right"></i>戻る</a>  <div class="UserName" align="right">UserName</div><!--ログインのユーザー名を取得し表示する  -->
@@ -24,8 +24,8 @@
     	<p><%=s[1] %></p>
     <form action="./Gamen10" method="post">
     <input type="hidden" name="name" value=Name>
-    <input type="hidden" name="Wname" value=<%=s[0] %>>
-    <input type="hidden" name="Tname" value=<%=s[1] %>>
+    <input type="hidden" name="Wname" value="<%=s[0] %>">
+    <input type="hidden" name="Tname" value="<%=s[1] %>">
     <input type="submit" value="報告" class="btn-square"></form> <!--アレイリストの作業名を取得し表示する,報告のボタンを押下すると押下した作業の報告画面への遷移を行う  -->
 		</div>
 		

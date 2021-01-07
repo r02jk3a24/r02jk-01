@@ -39,8 +39,8 @@ public class Sotuken4K extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		String pname = (String)request.getSession().getAttribute("pro_name");
 		int c = Integer.parseInt(request.getParameter("PRON"));
 		

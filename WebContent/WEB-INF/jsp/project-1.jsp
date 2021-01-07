@@ -34,7 +34,9 @@
 %>
 	<tr>
 		<td><%=task[1] %></td>
-		<td><button type="submit"name="work<%=task[0] %>" value="<%=task[0] %>" <%=dis %>>作業登録</button> <button type="submit"name="rep<%=task[0] %>" value="<%=task[0] %>">報告一覧</button></td>
+		<td><button type="submit"name="work<%=task[0] %>" value="<%=task[0] %>" <%=dis %>>作業登録</button> 
+		<button type="submit"name="rep<%=task[0] %>" value="<%=task[0] %>">報告一覧</button> 
+		<button type="submit"name="list<%=task[0] %>" value="<%=task[0] %>">参加作業一覧</button></td>
 	</tr>
 <% }
 }%>	

@@ -73,7 +73,7 @@ public class Sotuken4K extends HttpServlet {
 				}
 			}
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-5.jsp");
 			rd.forward(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace(out);
@@ -83,7 +83,6 @@ public class Sotuken4K extends HttpServlet {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
 		}
-		
 	
 	}
 

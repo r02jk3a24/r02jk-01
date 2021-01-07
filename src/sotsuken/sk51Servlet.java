@@ -89,7 +89,7 @@ public class sk51Servlet extends HttpServlet {
 					rd.forward(request, response);
 				}else if(tname2!=null){
 					request.getSession().setAttribute("tname", task[1]);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk9.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
 					rd.forward(request, response);
 				}
 			}

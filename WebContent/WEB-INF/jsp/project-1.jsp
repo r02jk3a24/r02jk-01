@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>参加課題一覧</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/project1.css">
 </head>
 <body>
 <%String user_name = (String)request.getSession().getAttribute("user_name"); %>

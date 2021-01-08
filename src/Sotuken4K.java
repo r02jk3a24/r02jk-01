@@ -54,7 +54,7 @@ public class Sotuken4K extends HttpServlet {
 			rs1.next();
 			
 			
-			for(int i=0; i<=c; i++) {
+			for(int i=0; i<c; i++) {
 				PreparedStatement pstmt1 = con.prepareStatement("select user_id from USERX where user_name = ?");
 				pstmt1.setString(1,uname[i]);
 				ResultSet rs2 = pstmt1.executeQuery();

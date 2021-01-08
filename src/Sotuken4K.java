@@ -54,12 +54,12 @@ public class Sotuken4K extends HttpServlet {
 			rs1.next();
 			
 			
-			for(int i=0; i>=c; i++) {
+			for(int i=1; i<=c; i++) {
 				PreparedStatement pstmt1 = con.prepareStatement("select user_id from USERX where user_name = ?");
 				pstmt1.setString(1,uname[i]);
 				ResultSet rs2 = pstmt1.executeQuery();
 				rs2.next();
-				if(i==0) {
+				if(i==1) {
 					PreparedStatement pstmt2 = con.prepareStatement("insert into PROMEN(pro_id, user_id, leader_f) values(?,?,1)");
 					pstmt2.setInt(1,rs1.getInt("pro_id"));
 					pstmt2.setInt(2, rs2.getInt("user_id"));

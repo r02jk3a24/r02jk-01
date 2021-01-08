@@ -50,6 +50,10 @@ public class USER2 extends HttpServlet implements DatabaseComminInterface{
 		
 		//final String email=session.getAttribute("email");
 		String email=request.getParameter("email");
+		if(email=="") {
+			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/emailerror.jsp");
+			rd.forward(request, response);
+		}
 		int h=0;
 		String id=null;
 		String name=null;

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザー名登録</title>
+<title>メールアドレス登録</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/hello.css">
 </head>

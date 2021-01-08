@@ -53,6 +53,11 @@ public class USER extends HttpServlet implements DatabaseComminInterface{
 		final String email=request.getParameter("email");
 		
 		final String name=request.getParameter("name");
+		if(name=="") {
+			request.getSession().setAttribute("email",email);
+			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/erroruser2.jsp");
+			rd.forward(request, response);
+		}
 		int s=0;
 		String id=null;
 			try {
@@ -68,6 +73,7 @@ public class USER extends HttpServlet implements DatabaseComminInterface{
 				rd.forward(request, response);
 				}
 				else {
+					request.getSession().setAttribute("email",email);
 					RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/erroruser.jsp");
 					rd.forward(request, response);
 				}

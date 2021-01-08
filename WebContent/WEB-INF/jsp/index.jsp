@@ -28,7 +28,7 @@
 
 
 <H2>ユーザー認証テスト中触るな危険</H2>
-<p>ユーザー登録画面へ<a href="/auth/index">/auth/index</a></p>
+<p>ユーザー登録画面へ<a href="/USER4">/auth/index</a></p>
 
 
 

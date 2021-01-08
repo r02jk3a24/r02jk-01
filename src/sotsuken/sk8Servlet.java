@@ -22,7 +22,7 @@ import db.DatabaseComminInterface;
 /**
  * Servlet implementation class sample01
  */
-@WebServlet("/sk5_1")
+@WebServlet("/sk8")
 public class sk8Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -12,7 +12,7 @@
 <p>↓リーダー</p>
 <% 
 int pron = (int)request.getSession().getAttribute("pro_partno");
-for(int i=1; i<=pron; i++){
+for(int i=0; i<=pron; i++){
 %>	
 
 <h3>メンバー名.<%=i %></h3>

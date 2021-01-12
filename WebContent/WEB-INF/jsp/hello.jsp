@@ -17,7 +17,7 @@
 
 <form method="get" action="./Sotuken1">
 <input type="hidden" name=userid value<%=user_id %>>
-<input type="submit" value="はじめる">
+<input type="submit" value="はじめる" class="btn-submit">
 </form>
 
 

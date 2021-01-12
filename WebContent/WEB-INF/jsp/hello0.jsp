@@ -8,12 +8,9 @@
 <title>認証します</title>
 </head>
 <body>
-<%String url = (String)request.getAttribute("url"); %>
 <H1>下のボタンをクリックしてください</H1>
-<a href="<%=url%>">認証用URL</a>
-<form>
-<input type="submit" value="認証する" formaction="<%=url %>">
-</form>>
+<a href="/auth/index">認証用URL</a>
+
 
 </body>
 </html>

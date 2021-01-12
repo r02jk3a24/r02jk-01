@@ -28,9 +28,9 @@ public class AuthIndexServlet extends HttpServlet {
 		//for cloud server
 		url = getProductionLoginUrl("5a76519d-15cb-46db-ac6e-8f9f67c5d8cb");
 		
-		request.setAttribute("url", url);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/hello0.jsp");
-		rd.forward(request, response);
+		//request.setAttribute("url", url);
+		//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/hello0.jsp");
+		//rd.forward(request, response);
 		//PrintWriter out = response.getWriter();
 		//out.println(url);
 	}

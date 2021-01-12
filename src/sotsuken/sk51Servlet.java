@@ -38,18 +38,7 @@ public class sk51Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] taskname = (String[])request.getSession().getAttribute("taskname");
-		String tname = "";
-		for(int i=0;i<taskname.length;i++) {
-			tname = request.getParameter(taskname[i]);
-			if(tname!=null) {
-				break;
-			}
-		}
 		
-		System.out.print(tname);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");
-		rd.forward(request, response);
 	}
 
 	/**
@@ -62,12 +51,14 @@ public class sk51Servlet extends HttpServlet {
 		ArrayList<String[]> taskList = (ArrayList<String[]>)request.getSession().getAttribute("taskList");
 		String tname1 = "";
 		String tname2 = "";
+		String tname3 = "";
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			for(int i=0;i<taskList.size();i++) {
 				String[] task = taskList.get(i);
 				tname1 = request.getParameter("work"+task[0]);
 				tname2 = request.getParameter("rep"+task[0]);
+				tname3 = request.getParameter("list"+task[0]);
 				if(tname1!=null) {
 					PreparedStatement pstmt1 = con.prepareStatement("select USERX.user_id,user_name from USERX join PROMEN on(USERX.user_id = PROMEN.user_id) where PROMEN.pro_id = ?");
 					pstmt1.setString(1, tname1);
@@ -90,7 +81,7 @@ public class sk51Servlet extends HttpServlet {
 				}else if(tname2!=null){
 					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
 					rd.forward(request, response);
-				}else {
+				}else if(tname3!=null){
 					RequestDispatcher rd = request.getRequestDispatcher("/Gamen6");
 					rd.forward(request, response);
 				}

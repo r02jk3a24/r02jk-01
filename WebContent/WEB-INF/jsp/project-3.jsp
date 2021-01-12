@@ -17,6 +17,5 @@
 <p><input type="submit"  value="登録"></p>
 
 </form>
-
 </body>
 </html>

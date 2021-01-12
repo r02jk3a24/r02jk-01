@@ -16,7 +16,7 @@ for(int i=1; i<=pron; i++){
 %>	
 
 <h3>メンバー名.<%=i %></h3>
-<input type="Text" name="un_<%= i%>">
+<input type="Text" name="uname" value="<%= i%>">
 
 
 

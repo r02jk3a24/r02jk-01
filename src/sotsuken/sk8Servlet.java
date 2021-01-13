@@ -44,22 +44,20 @@ public class sk8Servlet extends HttpServlet {
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			String pro_id = "1";
-			String task_id = "1";
+			String pro_id = "2";
+			String task_id = "9";
 			
-			request.setAttribute("pro_name", "ƒeƒXƒg‰Û‘è");
+			request.setAttribute("pro_name", "test2");
 			
-			PreparedStatement pstmt = con.prepareStatement("select task_name,task_partno,item_no from TASK where pro_id = ? and task_id = ?");
+			PreparedStatement pstmt = con.prepareStatement("select task_name,item_no from TASK where pro_id = ? and task_id = ?");
 			pstmt.setString(1, pro_id);
 			pstmt.setString(2, task_id);
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
 			String task_name  = rs.getString("task_name");
-			int task_partno = rs.getInt("task_partno");
 			int item_no = rs.getInt("item_no");
 			
 			request.setAttribute("task_name", task_name);
-			request.setAttribute("task_partno", task_partno);
 			request.setAttribute("item_no", item_no);
 			
 			PreparedStatement pstmt2 = con.prepareStatement("select user_name from TASKMEN join USERX on(USERX.user_id = TASKMEN.user_id) where pro_id = ? and task_id = ?");

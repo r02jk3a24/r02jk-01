@@ -15,7 +15,6 @@
 <%	
 	String pro_name = (String)request.getAttribute("pro_name");
 	String task_name = (String)request.getAttribute("task_name");
-	int task_partno = (int)request.getAttribute("task_partno");
 	int item_no = (int)request.getAttribute("item_no");
 	List<String> user_name = (List<String>)request.getAttribute("user_name");
 	List<String[]> taskitem = (List<String[]>)request.getAttribute("taskitem");
@@ -40,8 +39,9 @@
 </table>
 
 <%
-	for(int i=1;i<=task_partno;i++){
-		String[] item = taskitem.get(i);
+	int count = 0;
+	for(int i=1;i<=item_no;i++){
+		String[] item = taskitem.get(i-1);
 %>
 	<table>
 	<tr>
@@ -52,16 +52,19 @@
 		
 		if(Integer.parseInt(item[1])==1){
 %>
-			<input type="radio" name="radio<%=i %>" value="<%= j%>"><%=con_name.get(i*j)%>
+			<input type="radio" name="radio<%=i %>" value="<%= j%>"><%=con_name.get(count)%>
 <%
+			count++;
 		}else if(Integer.parseInt(item[1])==2){
 %>
-			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>"><%=con_name.get(i*j)%>
+			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>"><%=con_name.get(count)%>
 <%
+			count++;
 		}else {
 %>
 			<input name="text<%=i %>" type="text">
 <%
+			count++;
 		}
 	}
 %>
@@ -74,7 +77,7 @@
 
 <input type="submit" value="送信">
 
-</form>>
+</form>
 
 </body>
 </html>

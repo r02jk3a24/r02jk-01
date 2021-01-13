@@ -55,7 +55,6 @@ public class sk8Servlet extends HttpServlet {
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
 			String task_name  = rs.getString("task_name");
-			int task_partno = rs.getInt("task_partno");
 			int item_no = rs.getInt("item_no");
 			
 			request.setAttribute("task_name", task_name);

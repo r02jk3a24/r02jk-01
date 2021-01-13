@@ -41,7 +41,7 @@
 
 <%
 	for(int i=1;i<=task_partno;i++){
-		String[] item = taskitem.get(i);
+		String[] item = taskitem.get(i-1);
 %>
 	<table>
 	<tr>

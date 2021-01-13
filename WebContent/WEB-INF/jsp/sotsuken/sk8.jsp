@@ -39,6 +39,7 @@
 </table>
 
 <%
+	int count = 0;
 	for(int i=1;i<=item_no;i++){
 		String[] item = taskitem.get(i-1);
 %>
@@ -51,16 +52,19 @@
 		
 		if(Integer.parseInt(item[1])==1){
 %>
-			<input type="radio" name="radio<%=i %>" value="<%= j%>"><%=con_name.get(i*j)%>
+			<input type="radio" name="radio<%=i %>" value="<%= j%>"><%=con_name.get(count)%>
 <%
+			count++;
 		}else if(Integer.parseInt(item[1])==2){
 %>
-			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>"><%=con_name.get(i*j)%>
+			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>"><%=con_name.get(count)%>
 <%
+			count++;
 		}else {
 %>
 			<input name="text<%=i %>" type="text">
 <%
+			count++;
 		}
 	}
 %>
@@ -73,7 +77,7 @@
 
 <input type="submit" value="送信">
 
-</form>>
+</form>
 
 </body>
 </html>

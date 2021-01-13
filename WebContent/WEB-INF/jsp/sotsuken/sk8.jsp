@@ -15,7 +15,6 @@
 <%	
 	String pro_name = (String)request.getAttribute("pro_name");
 	String task_name = (String)request.getAttribute("task_name");
-	int task_partno = (int)request.getAttribute("task_partno");
 	int item_no = (int)request.getAttribute("item_no");
 	List<String> user_name = (List<String>)request.getAttribute("user_name");
 	List<String[]> taskitem = (List<String[]>)request.getAttribute("taskitem");
@@ -40,7 +39,7 @@
 </table>
 
 <%
-	for(int i=1;i<=task_partno;i++){
+	for(int i=1;i<=item_no;i++){
 		String[] item = taskitem.get(i-1);
 %>
 	<table>

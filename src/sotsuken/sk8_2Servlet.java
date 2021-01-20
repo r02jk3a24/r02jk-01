@@ -122,8 +122,8 @@ public class sk8_2Servlet extends HttpServlet {
 		String pro_id = (String)request.getSession().getAttribute("pro_id");
 		String task_id = (String)request.getSession().getAttribute("task_id");
 		String user_id = (String)request.getSession().getAttribute("userid");
-		int item_no = (int)request.getAttribute("item_no");
-		ArrayList<String[]> taskitem = (ArrayList<String[]>) request.getAttribute("taskitem");
+		int item_no = (int)request.getSession().getAttribute("item_no");
+		ArrayList<String[]> taskitem = (ArrayList<String[]>) request.getSession().getAttribute("taskitem");
 		
 		
 		

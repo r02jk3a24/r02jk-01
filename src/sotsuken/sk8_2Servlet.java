@@ -72,7 +72,6 @@ public class sk8_2Servlet extends HttpServlet {
 			rs1.next();
 			String repo_date = rs1.getString("date");
 			
-			String status = "”ñ‘I‘ð";
 			String repocon1 = "";
 			String repocon2 = "";
 			String repocon3 = "";
@@ -84,6 +83,7 @@ public class sk8_2Servlet extends HttpServlet {
 				repocon3 = request.getParameter("text"+task[0]);
 				
 				for(int j=0;j<Integer.parseInt(task[2]);j++) {
+					String status = "”ñ‘I‘ð";
 					if(repocon1!=null&&Integer.parseInt(repocon1)==j) {
 						status = "‘I‘ð";
 					}else if(repocon2!=null&&Integer.parseInt(repocon2)==j){

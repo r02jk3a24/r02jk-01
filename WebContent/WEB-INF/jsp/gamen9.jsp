@@ -12,9 +12,8 @@
 <body>
 	<%
 		List<String[]> resultList = (List<String[]>) request.getAttribute("resultList");
-	String mae = null;
-	String WorkName = null;
-	String User=null;
+		int count = 0;
+		int loop =0;
 	%>
 
 	<a href="#" class="btn-flat-simple"><i class="fa fa-caret-right"></i>戻る</a>
@@ -23,78 +22,78 @@
 	<div class="Name">
 		<p></p>
 	</div>
-	<!--課題名を取得し表示する  -->
+	
+	<h1><%=resultList.get(count)[0]%></h1><!--課題名,pnameを取得し表示する  -->
+	
+	<%
+			if(resultList!=null){
+	%>
+	
 	<table border="1">
 		<%
-			for (String[] s : resultList) { //ここに変数仕込む、全体の作業数を取得しそれを利用
+			while(count < resultList.size() ) { 
 		%>
-		<tr>
-			<%
-				if (WorkName == null) {
-				WorkName = s[0];
+		<tr>			
+						<%
+							if(count==0) { 
+						%>
+							<%=resultList.get(count)[2]%></br><!--ユーザー名を取得し表示する  -->
+						<%
+							}else if(resultList.get(count)[2]!=resultList.get(count-1)[2]){
+						%>
+							<%=resultList.get(count)[2]%></br>
+						<%
+							}
+						%>
+						
+						
+						<%
+							if(count==0) { 
+						%>
+							<%=resultList.get(count)[3]%></br><!--ユーザー名を取得し表示する  -->
+						<%
+							}else if(resultList.get(count)[3]!=resultList.get(count-1)[3]){
+						%>
+							<%=resultList.get(count)[3]%></br>
+						<%
+							}
+						%>
+						
+						<%=loop=count%>
+						<%
+							while(resultList.get(count)[3]==resultList.get(loop)[3]){
+						%>
+						
+							<%
+								if(resultList.get(count)[1] != null) { 
+							%>
+							報告あり
+							<%=resultList.get(count)[1]%><!--repodate(報告日時)-->
+							<form action="./Gamen10" method="post">
+							<input type="hidden" name="name" value=Name> 
+							<input　type="hidden" name="Wname" value="<%=%>"> 
+							<input　type="hidden" name="Tname" value="<%=%>"> 
+							<input　type="submit" value="詳細へ" class="btn-square">
+							</form>
+							<%
+								}
+							%>
+						<%
+							}
+						%>
 				
-			%>
-				<p><%=s[0]%></p>
-			<%
-				}
-			%>
-			<%
-				if (WorkName.equals(s[0])==false) {
-			%>
-				<p><%=s[0]%></p>
-				
-			<%
-				WorkName = s[0];
-			%>
-			<%
-				}
-			%>
-
-
-			<%
-				if (mae == null) {
-					User=s[4];
-					mae = s[2];
-			%>
-				<form action="./Gamen6" method="post">
-					<input type="hidden" name="TUserid" value="<%=User%>"> 
-					<input type="submit" value=<%=s[2]%> class="btn-square">
-					</form>
-
-			<%
-				}
-			%>
-			<%
-				if (mae.equals(s[2]) == false) { //maeはnullにつき比較できない
-					User=s[4];
-			%>
-				<form action="./Gamen6" method="post">
-				<input type="hidden" name="TUserid" value="<%=User%>"> 
-				<input type="submit" value=<%=s[2]%> class="btn-square">
-				</form>
-				<%
-					mae = s[2];
-				%>
-				<%
-					}
-				%>
-				<form action=# method="post">
-					<div class="box30">
-						<!--アレイリストの課題名を取得し表示する  -->
-						<p><%=s[1]%></p> <!--repodate  -->
-						<div class="box-title"><%=s[3]%></div> <!--tname(作業名)-->
-						<input type="hidden" name="name" value=Name> 
-						<input　type="hidden" name="Wname" value="<%=s[0]%>"> 
-						<input　type="hidden" name="Tname" value="<%=s[1]%>"> 
-						<input　type="submit" value="詳細へ" class="btn-square">
-					</div>
-				</form>
 				<!--アレイリストの作業名を取得し表示する,報告のボタンを押下すると押下した作業の報告画面への遷移を行う  -->
 		</tr>
 		<%
 			}
 		%>
 	</table>
-
+	<%
+			}else{
+	%>
+		<h1>当該課題の報告は現在上がっていません</h1>
+	<%
+			}
+	%>
 </body>
 </html>

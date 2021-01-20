@@ -71,8 +71,8 @@
 							<%=resultList.get(count)[1]%><!--repodate(報告日時)-->
 							<form action="./Gamen10" method="post">
 							<input type="hidden" name="name" value=Name> 
-							<input　type="hidden" name="Wname" value="<%=%>"> 
-							<input　type="hidden" name="Tname" value="<%=%>"> 
+							<input　type="hidden" name="Wname" value="<%=resultList.get(count)[1]%>"> 
+							<input　type="hidden" name="Tname" value="<%=resultList.get(count)[2]%>"> 
 							<input　type="submit" value="詳細へ" class="btn-square">
 							</form>
 							<%

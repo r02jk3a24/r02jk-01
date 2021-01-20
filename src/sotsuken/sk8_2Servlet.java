@@ -22,14 +22,14 @@ import db.DatabaseComminInterface;
 /**
  * Servlet implementation class sample01
  */
-@WebServlet("/sk8")
-public class sk8Servlet extends HttpServlet {
+@WebServlet("/sk8_2")
+public class sk8_2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sk8Servlet() {
+    public sk8_2Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,8 +47,6 @@ public class sk8Servlet extends HttpServlet {
 			String pro_id = "2";
 			String task_id = "9";
 			
-			request.getSession().setAttribute("pro_id", pro_id);
-			request.getSession().setAttribute("task_id", task_id);
 			request.setAttribute("pro_name", "test2");
 			
 			PreparedStatement pstmt = con.prepareStatement("select task_name,item_no from TASK where pro_id = ? and task_id = ?");
@@ -57,6 +55,7 @@ public class sk8Servlet extends HttpServlet {
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
 			String task_name  = rs.getString("task_name");
+			int task_partno = rs.getInt("task_partno");
 			int item_no = rs.getInt("item_no");
 			
 			request.setAttribute("task_name", task_name);
@@ -120,42 +119,58 @@ public class sk8Servlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		ArrayList<String[]> taskList = (ArrayList<String[]>)request.getSession().getAttribute("taskList");
-		String tname1 = "";
-		String tname2 = "";
+		String pro_id = (String)request.getSession().getAttribute("pro_id");
+		String task_id = (String)request.getSession().getAttribute("task_id");
+		String user_id = (String)request.getSession().getAttribute("userid");
+		int item_no = (int)request.getAttribute("item_no");
+		ArrayList<String[]> taskitem = (ArrayList<String[]>) request.getAttribute("taskitem");
+		
+		
+		
+		
+		
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			for(int i=0;i<taskList.size();i++) {
-				String[] task = taskList.get(i);
-				tname1 = request.getParameter("work"+task[0]);
-				tname2 = request.getParameter("rep"+task[0]);
-				if(tname1!=null) {
-					PreparedStatement pstmt1 = con.prepareStatement("select USERX.user_id,user_name from USERX join PROMEN on(USERX.user_id = PROMEN.user_id) where PROMEN.pro_id = ?");
-					pstmt1.setString(1, tname1);
-					ResultSet rs2 = pstmt1.executeQuery();
-					
-					ArrayList<String[]> username = new ArrayList<>();
-					
-					while(rs2.next() == true) {
-						String[] ss = new String[2];
-						ss[0]=rs2.getString("user_id");
-						ss[1]=rs2.getString("user_name");
-						
-						username.add(ss);
+			PreparedStatement pstmt1 = con.prepareStatement("insert into REPO(pro_id,task_id,user_id,repo_date) values(?,?,?,GETDATE())");
+			pstmt1.setString(1, pro_id);
+			pstmt1.setString(2, task_id);
+			pstmt1.setString(3, user_id);
+			pstmt1.executeUpdate();
+			
+			PreparedStatement pstmts1 = con.prepareStatement("select max(repo_date) as date from REPO where pro_id = ? and task_id = ? and uer_id = ?");
+			pstmts1.setString(1, pro_id);
+			pstmts1.setString(2, task_id);
+			pstmts1.setString(3, user_id);
+			ResultSet rs1 = pstmts1.executeQuery();
+			rs1.next();
+			String repo_date = rs1.getString("date");
+			
+			String status = "”ñ‘I‘ð";
+			String repocon1 = "";
+			String repocon2 = "";
+			String repocon3 = "";
+			
+			for(int i=0;i<item_no;i++){
+				String[] task = taskitem.get(i);
+				repocon1 = request.getParameter("radio"+task[0]);
+				repocon2 = request.getParameter("checkbox"+task[0]);
+				repocon3 = request.getParameter("text"+task[0]);
+				
+				for(int j=0;j<Integer.parseInt(task[2]);j++) {
+					if(repocon1!=null&&Integer.parseInt(repocon1)==j) {
+						status = "‘I‘ð";
+					}else if(repocon2!=null&&Integer.parseInt(repocon2)==j){
+						status = "‘I‘ð";
+					}else if(repocon3!=null){
+						status = repocon3;
 					}
-					request.getSession().setAttribute("pro_id", task[0]);
-					request.getSession().setAttribute("username", username);
-					request.getSession().setAttribute("tname", task[1]);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");
-					rd.forward(request, response);
-				}else if(tname2!=null){
-					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
-					rd.forward(request, response);
-				}else {
-					RequestDispatcher rd = request.getRequestDispatcher("/Gamen6");
-					rd.forward(request, response);
+					insertRepode(out,con,pro_id,task_id,user_id,repo_date,(i+1),(j+1),status);
 				}
 			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk8_2.jsp");
+			rd.forward(request, response);
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
@@ -164,6 +179,19 @@ public class sk8Servlet extends HttpServlet {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
 		}
+		
+	}
+	
+	private void insertRepode(PrintWriter out, Connection con,String pro_id,String task_id,String user_id,String repo_date,int item_id,int con_id,String repo_con) throws SQLException {
+		PreparedStatement pstmt2 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con)) values(?,?,?,?,?,?,?)");
+		pstmt2.setString(1, pro_id);
+		pstmt2.setString(2, task_id);
+		pstmt2.setString(3, user_id);
+		pstmt2.setString(4, repo_date);
+		pstmt2.setInt(5, item_id);
+		pstmt2.setInt(6, con_id);
+		pstmt2.setString(7, repo_con);
+		pstmt2.executeUpdate();
 		
 	}
 

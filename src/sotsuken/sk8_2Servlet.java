@@ -110,7 +110,7 @@ public class sk8_2Servlet extends HttpServlet {
 	}
 	
 	private void insertRepode(PrintWriter out, Connection con,String pro_id,String task_id,String user_id,String repo_date,int item_id,int con_id,String repo_con) throws SQLException {
-		PreparedStatement pstmt2 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con)) values(?,?,?,?,?,?,?)");
+		PreparedStatement pstmt2 = con.prepareStatement("insert into REPODE(pro_id,task_id,user_id,repo_date,item_id,con_id,repo_con) values(?,?,?,?,?,?,?)");
 		pstmt2.setString(1, pro_id);
 		pstmt2.setString(2, task_id);
 		pstmt2.setString(3, user_id);

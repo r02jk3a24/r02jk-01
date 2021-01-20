@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザー名登録</title>
+<title>メールアドレス登録</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/hello.css">
 </head>
@@ -16,9 +16,10 @@
 
 <H1><span>メールアドレスを入力して下さい</span></H1>
 
-<h2>メールアドレス</h2></br><input type="text" name="email" />
+<h2>メールアドレス</h2>
+</br><input type="text" name="email" class="textbox"/>
 
-</br></br><input type="submit" value="確認">
+</br></br><input type="submit" value="確認" class="btn-submit">
 
 </form>
 

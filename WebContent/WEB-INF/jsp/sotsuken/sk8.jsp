@@ -8,7 +8,7 @@
 <title>報告</title>
 </head>
 <body>
-<form method="post" action="./sk8">
+<form method="post" action="./sk8_2">
 
 <h1>作業報告</h1>
 
@@ -74,7 +74,8 @@
 <%
 } 
 %>
-
+<input type="hidden" name="taskitem" value="<%= taskitem%>">
+<input type="hidden" name="item_no" value="<%= item_no%>">
 <input type="submit" value="送信">
 
 </form>

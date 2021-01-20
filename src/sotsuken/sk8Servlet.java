@@ -60,7 +60,7 @@ public class sk8Servlet extends HttpServlet {
 			int item_no = rs.getInt("item_no");
 			
 			request.setAttribute("task_name", task_name);
-			request.setAttribute("item_no", item_no);
+			request.getSession().setAttribute("item_no", item_no);
 			
 			PreparedStatement pstmt2 = con.prepareStatement("select user_name from TASKMEN join USERX on(USERX.user_id = TASKMEN.user_id) where pro_id = ? and task_id = ?");
 			pstmt2.setString(1, pro_id);
@@ -86,7 +86,7 @@ public class sk8Servlet extends HttpServlet {
 				
 				taskitem.add(ss);
 			}
-			request.setAttribute("taskitem", taskitem);
+			request.getSession().setAttribute("taskitem", taskitem);
 			
 			PreparedStatement pstmt4 = con.prepareStatement("select con_name from TASKITEMDE where pro_id = ? and task_id = ? order by item_id,con_id");
 			pstmt4.setString(1, pro_id);

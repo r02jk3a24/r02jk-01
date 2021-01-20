@@ -44,8 +44,8 @@ public class sk8Servlet extends HttpServlet {
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
 			
-			String pro_id = "2";
-			String task_id = "9";
+			String pro_id = "29";
+			String task_id = "11";
 			
 			request.getSession().setAttribute("pro_id", pro_id);
 			request.getSession().setAttribute("task_id", task_id);

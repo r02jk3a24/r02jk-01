@@ -55,19 +55,19 @@
 <%
 	for(int j=0;j<Integer.parseInt(item[2]);j++){
 		String[] report = repo.get(count);
-		String check = "";
+		String status = "disable";
 		if(report[2].equals("選択")){
-			check="checked";
+			status="checked";
 		}
 		if(Integer.parseInt(item[1])==1){
 			
 %>
-			<input type="radio" name="radio<%=i %>" value="<%= j%>" <%=check %> disabled><%=con_name.get(count)%>
+			<input type="radio" name="radio<%=i %>" value="<%= j%>" <%=status %>><%=con_name.get(count)%>
 <%
 			count++;
 		}else if(Integer.parseInt(item[1])==2){
 %>
-			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>" <%=check %> disabled><%=con_name.get(count)%>
+			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>" <%=status %>><%=con_name.get(count)%>
 <%
 			count++;
 		}else {

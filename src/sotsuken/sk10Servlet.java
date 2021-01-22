@@ -114,9 +114,9 @@ public class sk10Servlet extends HttpServlet {
 			ArrayList<String[]> repo = new ArrayList<>();
 			while(rs5.next() == true) {
 				String[] ss = new String[3];
-				ss[0]=rs3.getString("item_id");
-				ss[1]=rs3.getString("con_id");
-				ss[2]=rs3.getString("repo_date");
+				ss[0]=rs5.getString("item_id");
+				ss[1]=rs5.getString("con_id");
+				ss[2]=rs5.getString("repo_date");
 				repo.add(ss);
 			}
 			request.setAttribute("repo", repo);

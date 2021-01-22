@@ -108,8 +108,8 @@ public class sk10Servlet extends HttpServlet {
 			PreparedStatement pstmt5 = con.prepareStatement("select item_id,con_id,repo_con from REPODE where pro_id = ? and task_id = ? and user_id = ? and repo_date = ?");
 			pstmt5.setString(1, pro_id);
 			pstmt5.setString(2, task_id);
-			pstmt5.setString(2, user_id);
-			pstmt5.setString(2, repo_date);
+			pstmt5.setString(3, user_id);
+			pstmt5.setString(4, repo_date);
 			ResultSet rs5 = pstmt5.executeQuery();
 			ArrayList<String[]> repo = new ArrayList<>();
 			while(rs5.next() == true) {

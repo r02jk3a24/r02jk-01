@@ -55,7 +55,7 @@
 <%
 	for(int j=0;j<Integer.parseInt(item[2]);j++){
 		String[] report = repo.get(count);
-		String status = "disable";
+		String status = "disabled";
 		if(report[2].equals("選択")){
 			status="checked";
 		}

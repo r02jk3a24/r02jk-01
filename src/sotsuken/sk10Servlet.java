@@ -22,14 +22,14 @@ import db.DatabaseComminInterface;
 /**
  * Servlet implementation class sample01
  */
-@WebServlet("/sk8")
-public class sk8Servlet extends HttpServlet {
+@WebServlet("/sk10")
+public class sk10Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sk8Servlet() {
+    public sk10Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,10 +46,17 @@ public class sk8Servlet extends HttpServlet {
 			
 			String pro_id = "29";
 			String task_id = "11";
+			String user_id = "24";
+			String repo_date = "2021-01-20 06:04:39.253";
 			
-			request.getSession().setAttribute("pro_id", pro_id);
-			request.getSession().setAttribute("task_id", task_id);
 			request.setAttribute("pro_name", "”­•\•]‰¿");
+			
+			PreparedStatement pstmt0 = con.prepareStatement("select user_name from USERX where user_id = ?");
+			pstmt0.setString(1, user_id);
+			ResultSet rs0 = pstmt0.executeQuery();
+			rs0.next();
+			String user  = rs0.getString("user_name");
+			request.setAttribute("user", user);
 			
 			PreparedStatement pstmt = con.prepareStatement("select task_name,item_no from TASK where pro_id = ? and task_id = ?");
 			pstmt.setString(1, pro_id);
@@ -60,7 +67,7 @@ public class sk8Servlet extends HttpServlet {
 			int item_no = rs.getInt("item_no");
 			
 			request.setAttribute("task_name", task_name);
-			request.getSession().setAttribute("item_no", item_no);
+			request.setAttribute("item_no", item_no);
 			
 			PreparedStatement pstmt2 = con.prepareStatement("select user_name from TASKMEN join USERX on(USERX.user_id = TASKMEN.user_id) where pro_id = ? and task_id = ?");
 			pstmt2.setString(1, pro_id);
@@ -86,7 +93,7 @@ public class sk8Servlet extends HttpServlet {
 				
 				taskitem.add(ss);
 			}
-			request.getSession().setAttribute("taskitem", taskitem);
+			request.setAttribute("taskitem", taskitem);
 			
 			PreparedStatement pstmt4 = con.prepareStatement("select con_name from TASKITEMDE where pro_id = ? and task_id = ? order by item_id,con_id");
 			pstmt4.setString(1, pro_id);
@@ -98,7 +105,23 @@ public class sk8Servlet extends HttpServlet {
 			}
 			request.setAttribute("con_name", con_name);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk8.jsp");
+			PreparedStatement pstmt5 = con.prepareStatement("select item_id,con_id,repo_con from REPODE where pro_id = ? and task_id = ? and user_id = ? and repo_date = ?");
+			pstmt5.setString(1, pro_id);
+			pstmt5.setString(2, task_id);
+			pstmt5.setString(2, user_id);
+			pstmt5.setString(2, repo_date);
+			ResultSet rs5 = pstmt5.executeQuery();
+			ArrayList<String[]> repo = new ArrayList<>();
+			while(rs5.next() == true) {
+				String[] ss = new String[3];
+				ss[0]=rs3.getString("item_id");
+				ss[1]=rs3.getString("con_id");
+				ss[2]=rs3.getString("repo_date");
+				repo.add(ss);
+			}
+			request.setAttribute("repo", repo);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk10.jsp");
 			rd.forward(request, response);
 			
 			
@@ -117,53 +140,7 @@ public class sk8Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		ArrayList<String[]> taskList = (ArrayList<String[]>)request.getSession().getAttribute("taskList");
-		String tname1 = "";
-		String tname2 = "";
-		try {
-			Connection con = DatabaseComminInterface.getConnection();
-			for(int i=0;i<taskList.size();i++) {
-				String[] task = taskList.get(i);
-				tname1 = request.getParameter("work"+task[0]);
-				tname2 = request.getParameter("rep"+task[0]);
-				if(tname1!=null) {
-					PreparedStatement pstmt1 = con.prepareStatement("select USERX.user_id,user_name from USERX join PROMEN on(USERX.user_id = PROMEN.user_id) where PROMEN.pro_id = ?");
-					pstmt1.setString(1, tname1);
-					ResultSet rs2 = pstmt1.executeQuery();
-					
-					ArrayList<String[]> username = new ArrayList<>();
-					
-					while(rs2.next() == true) {
-						String[] ss = new String[2];
-						ss[0]=rs2.getString("user_id");
-						ss[1]=rs2.getString("user_name");
-						
-						username.add(ss);
-					}
-					request.getSession().setAttribute("pro_id", task[0]);
-					request.getSession().setAttribute("username", username);
-					request.getSession().setAttribute("tname", task[1]);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");
-					rd.forward(request, response);
-				}else if(tname2!=null){
-					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
-					rd.forward(request, response);
-				}else {
-					RequestDispatcher rd = request.getRequestDispatcher("/Gamen6");
-					rd.forward(request, response);
-				}
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace(out);
-			e.printStackTrace(System.out);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace(out);
-			e.printStackTrace(System.out);
-		}
+		
 		
 	}
 

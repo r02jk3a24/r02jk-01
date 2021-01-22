@@ -62,12 +62,12 @@
 		if(Integer.parseInt(item[1])==1){
 			
 %>
-			<input type="radio" name="radio<%=i %>" value="<%= j%>" checked="<%=check %>" disabled><%=con_name.get(count)%>
+			<input type="radio" name="radio<%=i %>" value="<%= j%>" <%=check %> disabled><%=con_name.get(count)%>
 <%
 			count++;
 		}else if(Integer.parseInt(item[1])==2){
 %>
-			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>" checked="<%=check %>" disabled><%=con_name.get(count)%>
+			<input type="checkbox" name="checkbox<%=i %>" value="<%= j%>" <%=check %> disabled><%=con_name.get(count)%>
 <%
 			count++;
 		}else {

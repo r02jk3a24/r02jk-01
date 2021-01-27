@@ -28,7 +28,7 @@
 	<%
 			if(resultList!=null){
 	%>
-	
+	<%=resultList.size() %>
 	<table border="1">
 		<%
 			while(count < resultList.size() ) { 
@@ -77,6 +77,9 @@
 							</form>
 							<%
 								}
+							%>
+							<% 
+								loop++;
 							%>
 						<%
 							}

@@ -16,6 +16,7 @@
 <p>画面5<a href="/sk5_1">/sk5_1</a></p>
 <p>画面8<a href="/sk8">/sk8</a></p>
 <p>画面9<a href="/Gamen9">/Gamen9</a></p>
+<p>画面10<a href="/sk10">/sk10</a></p>
 
 <H2>データベース検索</H2>
 <p>データベース検索へ<a href="/dbad2">/dbad2</a></p>

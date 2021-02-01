@@ -8,16 +8,16 @@
 <title>報告</title>
 </head>
 <body>
-<form method="post" action="./sk8">
+<form method="post" action="./sk8_2">
 
 <h1>作業報告</h1>
 
 <%	
 	String pro_name = (String)request.getAttribute("pro_name");
 	String task_name = (String)request.getAttribute("task_name");
-	int item_no = (int)request.getAttribute("item_no");
+	int item_no = (int)request.getSession().getAttribute("item_no");
 	List<String> user_name = (List<String>)request.getAttribute("user_name");
-	List<String[]> taskitem = (List<String[]>)request.getAttribute("taskitem");
+	List<String[]> taskitem = (List<String[]>)request.getSession().getAttribute("taskitem");
 	List<String> con_name = (List<String>)request.getAttribute("con_name");
 %>
 
@@ -74,7 +74,6 @@
 <%
 } 
 %>
-
 <input type="submit" value="送信">
 
 </form>

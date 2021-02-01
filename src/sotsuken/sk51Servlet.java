@@ -82,6 +82,7 @@ public class sk51Servlet extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
 					rd.forward(request, response);
 				}else if(tname3!=null){
+					request.setAttribute("pro_id", tname3);
 					RequestDispatcher rd = request.getRequestDispatcher("/Gamen6");
 					rd.forward(request, response);
 				}

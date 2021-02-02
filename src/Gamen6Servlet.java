@@ -48,7 +48,7 @@ public class Gamen6Servlet extends HttpServlet {
 
 			PreparedStatement pstmt0 = con.prepareStatement(
 					"select pro_id,pro_name,TASK.task_id,task_name from PRO join TASK on PRO.pro_id = TASK.pro_id "
-							+ "join TASKMEN on PRO.pro_id = TASKMEN.pro_id and TASK.task_id = TASKMEN.task_id where user_id = ? and pro_id =?");
+							+ "join TASKMEN on PRO.pro_id = TASKMEN.pro_id and TASK.task_id = TASKMEN.task_id where user_id = ? and REPO.pro_id =?");
 			pstmt0.setString(1, user_id);
 			pstmt0.setString(2, pro_id);
 			ResultSet rs0 = pstmt0.executeQuery();

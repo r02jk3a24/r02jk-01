@@ -61,12 +61,11 @@
 						
 						<%=loop=count%>
 						<%
-						//whileをforに変更
-							for(int i=0;i<resultList.size();i++){
+							while(resultList.get(count)[3]==resultList.get(loop)[3]){
 						%>
 						
 							<%
-								if(resultList.get(count)[3]==resultList.get(loop)[3]&&resultList.get(count)[1] != null) { 
+								if(resultList.get(count)[1] != null) { 
 							%>
 							報告あり
 							<%=resultList.get(count)[1]%><!--repodate(報告日時)-->

@@ -36,8 +36,10 @@
 		<form action="./sk10" method="post">
 	<% 
 		int count = 0;
+		int index = 0;
 		for(int i=0;i<resultList.size();i++){
-			if(resultList.get(i)[1]!=task_name.get(count)){
+			for(int c=0;i<task_name.size();c++){
+			if(!resultList.get(index)[1].equals(task_name.get(count))){
 	%>
 				<h2><%= task_name.get(count)%></h2>
 				<h3>この作業の報告は現在上がっていません</h3>
@@ -45,29 +47,30 @@
 				if(count<task_name.size()-1){
 					count++;
 				}
+			}else{
+				break;
+			}
 			}
 	%>
 			<h2><%= resultList.get(i)[1]%></h2>
 			<table>
 	<% 		
 			for(int j=0;j<resultList.size();j++){
-				String[] repo = resultList.get(i);
+				String[] repo = resultList.get(index);
 				String[] de = {pro_id,repo[0],repo[2],repo[4]};
 	%>
 				<tr><td><%=repo[3] %></td><td><%=repo[4] %></td>
 				<td><button type="submit" name="repode<%=i %>" value="<%= de%>">詳細へ</button></td></tr>
 	<%
 				
-				if(i+1<resultList.size()){
-					if(repo[0]!=resultList.get(i+1)[0]){
+				if(index+1<resultList.size()){
+					index++;
+					if(!repo[0].equals(resultList.get(i+1)[0])){
 						break;
 					}
-					
+				}else{
+					break;
 				}
-				if(i+1<resultList.size()){
-					i++;
-				}
-					
 			}
 			
 	%>

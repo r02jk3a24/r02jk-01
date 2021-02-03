@@ -128,9 +128,9 @@ public class sk8Servlet extends HttpServlet {
 			String pro_id = ptaskList.get(0)[0];
 			String pro_name = ptaskList.get(0)[1];
 			String task_id = "";
-			
+			String[] repotask = new String[4];
 			for(int i=0;i<ptaskList.size();i++) {
-				String[] repotask = request.getParameterValues("repo"+i);
+				repotask = request.getParameterValues("repo"+i);
 				if(repotask!=null) {
 					task_id = repotask[2];
 					break;

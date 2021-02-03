@@ -137,7 +137,7 @@ public class Gamen9Servlet extends HttpServlet {
 			}
 			request.setAttribute("task_name", tname);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk6.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk9.jsp");
 			rd.forward(request, response);
 			
 			

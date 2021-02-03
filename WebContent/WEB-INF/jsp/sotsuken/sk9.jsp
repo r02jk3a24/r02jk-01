@@ -37,7 +37,7 @@
 	<% 
 		int count = 0;
 		int index = 0;
-		for(int i=0;i<resultList.size();i++){
+		label:for(int i=0;i<resultList.size();i++){
 			for(int c=0;i<task_name.size();c++){
 			if(!resultList.get(index)[1].equals(task_name.get(count))){
 	%>
@@ -69,7 +69,7 @@
 						break;
 					}
 				}else{
-					break;
+					break label;
 				}
 			}
 			

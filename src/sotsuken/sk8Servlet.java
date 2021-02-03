@@ -120,42 +120,77 @@ public class sk8Servlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		ArrayList<String[]> taskList = (ArrayList<String[]>)request.getSession().getAttribute("taskList");
-		String tname1 = "";
-		String tname2 = "";
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			for(int i=0;i<taskList.size();i++) {
-				String[] task = taskList.get(i);
-				tname1 = request.getParameter("work"+task[0]);
-				tname2 = request.getParameter("rep"+task[0]);
-				if(tname1!=null) {
-					PreparedStatement pstmt1 = con.prepareStatement("select USERX.user_id,user_name from USERX join PROMEN on(USERX.user_id = PROMEN.user_id) where PROMEN.pro_id = ?");
-					pstmt1.setString(1, tname1);
-					ResultSet rs2 = pstmt1.executeQuery();
-					
-					ArrayList<String[]> username = new ArrayList<>();
-					
-					while(rs2.next() == true) {
-						String[] ss = new String[2];
-						ss[0]=rs2.getString("user_id");
-						ss[1]=rs2.getString("user_name");
-						
-						username.add(ss);
-					}
-					request.getSession().setAttribute("pro_id", task[0]);
-					request.getSession().setAttribute("username", username);
-					request.getSession().setAttribute("tname", task[1]);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");
-					rd.forward(request, response);
-				}else if(tname2!=null){
-					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
-					rd.forward(request, response);
-				}else {
-					RequestDispatcher rd = request.getRequestDispatcher("/Gamen6");
-					rd.forward(request, response);
+			
+			ArrayList<String[]> ptaskList = (ArrayList<String[]>) request.getSession().getAttribute("ptaskList");
+			
+			String pro_id = ptaskList.get(0)[0];
+			String pro_name = ptaskList.get(0)[1];
+			String task_id = "";
+			for(int i=0;i<ptaskList.size();i++) {
+				if(request.getParameterValues("repo"+i)!=null) {
+					task_id = request.getParameter("repo"+i);
+					break;
 				}
 			}
+			
+			request.getSession().setAttribute("pro_id", pro_id);
+			request.getSession().setAttribute("task_id", task_id);
+			request.setAttribute("pro_name", pro_name);
+			
+			PreparedStatement pstmt = con.prepareStatement("select task_name,item_no from TASK where pro_id = ? and task_id = ?");
+			pstmt.setString(1, pro_id);
+			pstmt.setString(2, task_id);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			String task_name  = rs.getString("task_name");
+			int item_no = rs.getInt("item_no");
+			
+			request.setAttribute("task_name", task_name);
+			request.getSession().setAttribute("item_no", item_no);
+			
+			PreparedStatement pstmt2 = con.prepareStatement("select user_name from TASKMEN join USERX on(USERX.user_id = TASKMEN.user_id) where pro_id = ? and task_id = ?");
+			pstmt2.setString(1, pro_id);
+			pstmt2.setString(2, task_id);
+			ResultSet rs2 = pstmt2.executeQuery();
+			ArrayList<String> user_name = new ArrayList<>();
+			while(rs2.next() == true) {
+				user_name.add(rs2.getString("user_name"));
+			}
+			request.setAttribute("user_name", user_name);
+			
+			PreparedStatement pstmt3 = con.prepareStatement("select item_id,form_id,con_no,item_name from TASKITEM where pro_id = ? and task_id = ? order by item_id");
+			pstmt3.setString(1, pro_id);
+			pstmt3.setString(2, task_id);
+			ResultSet rs3 = pstmt3.executeQuery();
+			ArrayList<String[]> taskitem = new ArrayList<>();
+			while(rs3.next() == true) {
+				String[] ss = new String[4];
+				ss[0]=rs3.getString("item_id");
+				ss[1]=rs3.getString("form_id");
+				ss[2]=rs3.getString("con_no");
+				ss[3]=rs3.getString("item_name");
+				
+				taskitem.add(ss);
+			}
+			request.getSession().setAttribute("taskitem", taskitem);
+			
+			PreparedStatement pstmt4 = con.prepareStatement("select con_name from TASKITEMDE where pro_id = ? and task_id = ? order by item_id,con_id");
+			pstmt4.setString(1, pro_id);
+			pstmt4.setString(2, task_id);
+			ResultSet rs4 = pstmt4.executeQuery();
+			ArrayList<String> con_name = new ArrayList<>();
+			while(rs4.next() == true) {
+				con_name.add(rs4.getString("con_name"));
+			}
+			request.setAttribute("con_name", con_name);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk8.jsp");
+			rd.forward(request, response);
+			
+			
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
@@ -164,7 +199,8 @@ public class sk8Servlet extends HttpServlet {
 			e.printStackTrace(out);
 			e.printStackTrace(System.out);
 		}
-		
 	}
+		
+	
 
 }

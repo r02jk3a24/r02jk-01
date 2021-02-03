@@ -78,12 +78,17 @@ public class sk51Servlet extends HttpServlet {
 					request.getSession().setAttribute("tname", task[1]);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/sotsuken/sk5-1.jsp");
 					rd.forward(request, response);
+					break;
 				}else if(tname2!=null){
+					request.setAttribute("pro_id", tname2);
 					RequestDispatcher rd = request.getRequestDispatcher("/Gamen9");
 					rd.forward(request, response);
+					break;
 				}else if(tname3!=null){
+					request.setAttribute("pro_id", tname3);
 					RequestDispatcher rd = request.getRequestDispatcher("/Gamen6");
 					rd.forward(request, response);
+					break;
 				}
 			}
 		} catch (ClassNotFoundException e) {

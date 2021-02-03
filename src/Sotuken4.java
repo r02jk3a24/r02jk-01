@@ -51,7 +51,7 @@ public class Sotuken4 extends HttpServlet {
 			pstmt.setString(1,pro_name);
 			pstmt.setString(2,pro_partno);
 			pstmt.executeUpdate();
-			
+	
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");
 			rd.forward(request, response);
 		} catch (ClassNotFoundException e) {
@@ -63,7 +63,6 @@ public class Sotuken4 extends HttpServlet {
 			e.printStackTrace(System.out);
 		}
 		
-	
 	}
 
 }

@@ -54,3 +54,7 @@ h1 {
 .Tbutton:hover {
 	background-color: #bbb;
 }
+.Tbutton:disabled {
+	color: black;
+	background-color: #bbb;
+}

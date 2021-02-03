@@ -109,7 +109,7 @@ public class Gamen9Servlet extends HttpServlet {
 			PreparedStatement pstmt2 = con.prepareStatement("SELECTÅ@REPO.task_id as tid,task_name,REPO.user_id as uid,user_name,repo_date from REPO "
 					+ "join TASK on REPO.task_id = TASK.task_id "
 					+ "join USERX on REPO.user_id = USERX.user_id "
-					+ "where REPO.pro_id = ? order by task_id,repo_date");
+					+ "where REPO.pro_id = ? order by REPO.task_id,repo_date");
 			
 			pstmt2.setString(1, pro_id);
 			ResultSet rs2 = pstmt2.executeQuery();

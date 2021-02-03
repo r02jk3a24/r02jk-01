@@ -47,7 +47,7 @@ public class Gamen6Servlet extends HttpServlet {
 			String pro_id = (String) request.getAttribute("pro_id");
 
 			PreparedStatement pstmt0 = con.prepareStatement(
-					"select pro_id,pro_name,TASK.task_id,task_name from PRO join TASK on PRO.pro_id = TASK.pro_id "
+					"select PRO.pro_id as pid,pro_name,TASK.task_id as tid,task_name from PRO join TASK on PRO.pro_id = TASK.pro_id "
 							+ "join TASKMEN on PRO.pro_id = TASKMEN.pro_id and TASK.task_id = TASKMEN.task_id where user_id = ? and REPO.pro_id =?");
 			pstmt0.setString(1, user_id);
 			pstmt0.setString(2, pro_id);
@@ -55,9 +55,9 @@ public class Gamen6Servlet extends HttpServlet {
 			ArrayList<String[]> ptaskList = new ArrayList<>();
 			while (rs0.next() == true) {
 				String[] ss = new String[4];
-				ss[0] = rs0.getString("pro_id");
+				ss[0] = rs0.getString("pid");
 				ss[1] = rs0.getString("pro_name");
-				ss[2] = rs0.getString("task_id");
+				ss[2] = rs0.getString("tid");
 				ss[3] = rs0.getString("task_name");
 				ptaskList.add(ss);
 			}

@@ -45,7 +45,7 @@ public class Sotuken4 extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			 PreparedStatement pstmt = con.prepareStatement("insert into PRO(pro_name, pro_partno, pro_date) values(?,?,DATEADD(hour, 9, SYSUTCDATETIME())");
+			 PreparedStatement pstmt = con.prepareStatement("insert into PRO(pro_name, pro_partno, pro_date) values(?,?,getdate()");
 			String pro_name = request.getParameter("pro_name");
 			String pro_partno = request.getParameter("pro_partno");
 			pstmt.setString(1,pro_name);

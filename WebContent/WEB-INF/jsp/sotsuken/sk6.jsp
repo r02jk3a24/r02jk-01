@@ -27,7 +27,7 @@
 %>
 	<tr>
 		<td><%=task[3] %></td>
-		<td><button type="submit"name="repo<%=i %>" value="<%=task %>">報告</button></td>
+		<td><button type="submit"name="repo<%=i %>" value="<%=task[2] %>">報告</button></td>
 	</tr>
 <% }
 }%>	

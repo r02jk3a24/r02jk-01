@@ -129,7 +129,7 @@ public class Gamen9Servlet extends HttpServlet {
 			
 			PreparedStatement pstmt3 = con.prepareStatement("SELECTÅ@task_name from TASK where pro_id = ? order by task_id");
 			
-			pstmt.setString(1, pro_id);
+			pstmt3.setString(1, pro_id);
 			ResultSet rs3 = pstmt3.executeQuery();
 			ArrayList<String> tname = new ArrayList<>();
 			while(rs3.next()==true) {

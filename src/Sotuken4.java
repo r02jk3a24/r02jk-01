@@ -45,13 +45,13 @@ public class Sotuken4 extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			Connection con = DatabaseComminInterface.getConnection();
-			 PreparedStatement pstmt = con.prepareStatement("insert into PRO(pro_name, pro_partno, pro_date) values(?,?,getdate())");
+			 PreparedStatement pstmt = con.prepareStatement("insert into PRO(pro_name, pro_partno, pro_date) values(?,?,DATEADD(hour, 9, SYSUTCDATETIME())");
 			String pro_name = request.getParameter("pro_name");
 			String pro_partno = request.getParameter("pro_partno");
 			pstmt.setString(1,pro_name);
 			pstmt.setString(2,pro_partno);
 			pstmt.executeUpdate();
-			
+	
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/project-4.jsp");
 			rd.forward(request, response);
 		} catch (ClassNotFoundException e) {
@@ -63,7 +63,6 @@ public class Sotuken4 extends HttpServlet {
 			e.printStackTrace(System.out);
 		}
 		
-	
 	}
 
 }

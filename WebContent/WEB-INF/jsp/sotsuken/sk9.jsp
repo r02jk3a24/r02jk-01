@@ -37,11 +37,12 @@
 	<% 
 		int count = 0;
 		for(int i=0;i<resultList.size();i++){
-			if(resultList.get(i)[1]==task_name.get(count)){
+			if(resultList.get(i)[1]!=task_name.get(count)){
 	%>
 				<h2><%= task_name.get(count)%></h2>
 				<h3>この作業の報告は現在上がっていません</h3>
 	<%
+				count++;
 			}
 	%>
 			<h2><%= resultList.get(i)[1]%></h2>

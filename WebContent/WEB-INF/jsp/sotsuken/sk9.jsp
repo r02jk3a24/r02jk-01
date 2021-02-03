@@ -42,7 +42,9 @@
 				<h2><%= task_name.get(count)%></h2>
 				<h3>この作業の報告は現在上がっていません</h3>
 	<%
-				count++;
+				if(count<task_name.size()-1){
+					count++;
+				}
 			}
 	%>
 			<h2><%= resultList.get(i)[1]%></h2>

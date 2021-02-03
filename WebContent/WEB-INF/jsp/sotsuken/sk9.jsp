@@ -64,7 +64,10 @@
 					}
 					
 				}
-				i++;
+				if(i+1<resultList.size()){
+					i++;
+				}
+					
 			}
 			
 	%>

@@ -133,6 +133,7 @@ public class sk8Servlet extends HttpServlet {
 				String[] repotask = request.getParameterValues("repo"+i);
 				if(repotask!=null) {
 					task_id = repotask[2];
+					break;
 				}
 			}
 			

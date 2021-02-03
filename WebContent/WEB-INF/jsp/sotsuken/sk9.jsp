@@ -55,7 +55,7 @@
 				<td><button type="submit" name="repode<%=i %>" value="<%= de%>">詳細へ</button></td></tr>
 	<%
 				
-				if(j<resultList.size()-1){
+				if(i+1<resultList.size()){
 					if(repo[0]!=resultList.get(i+1)[0]){
 						break;
 					}

@@ -147,18 +147,22 @@ public class sk10Servlet extends HttpServlet {
 			Connection con = DatabaseComminInterface.getConnection();
 			
 			ArrayList<String> resultList = (ArrayList<String>) request.getSession().getAttribute("resultList");
-			String[] repode = new String[4];
+			String repo_date = "";
 			for(int i=0;i<resultList.size();i++) {
-				repode = request.getParameterValues("repode"+i);
-				if(repode!=null) {
+				if(request.getParameter("repode"+i)!=null) {
+					repo_date = request.getParameter("repode"+i);
 					break;
 				}
 			}
 			
-			String pro_id = repode[0];
-			String task_id = repode[1];
-			String user_id = repode[2];
-			String repo_date = repode[3];
+			PreparedStatement pstmt02 = con.prepareStatement("select pro_id,task_id,user_id from REPO where repo_date = ?");
+			pstmt02.setString(1, repo_date);
+			ResultSet rs02 = pstmt02.executeQuery();
+			rs02.next();
+			
+			String pro_id = rs02.getString("pro_id");
+			String task_id = rs02.getString("task_id");
+			String user_id = rs02.getString("user_id");
 			
 			PreparedStatement pstmt01 = con.prepareStatement("select pro_name from PRO where pro_id = ?");
 			pstmt01.setString(1, pro_id);

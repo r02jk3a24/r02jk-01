@@ -48,24 +48,26 @@
 					count++;
 				}
 			}else{
+				if(count<task_name.size()-1){
+					count++;
+				}
 				break;
 			}
 			}
 	%>
-			<h2><%= resultList.get(i)[1]%></h2>
+			<h2><%= resultList.get(index)[1]%></h2>
 			<table>
 	<% 		
 			for(int j=0;j<resultList.size();j++){
 				String[] repo = resultList.get(index);
-				String[] de = {pro_id,repo[0],repo[2],repo[4]};
 	%>
 				<tr><td><%=repo[3] %></td><td><%=repo[4] %></td>
-				<td><button type="submit" name="repode<%=i %>" value="<%= de%>">詳細へ</button></td></tr>
+				<td><button type="submit" name="repode<%=i %>" value="<%= repo[4]%>">詳細へ</button></td></tr>
 	<%
 				
 				if(index+1<resultList.size()){
 					index++;
-					if(!repo[0].equals(resultList.get(i+1)[0])){
+					if(!repo[0].equals(resultList.get(index+1)[0])){
 						break;
 					}
 				}else{

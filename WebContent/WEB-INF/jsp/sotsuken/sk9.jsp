@@ -58,7 +58,7 @@
 				
 				if(index+1<resultList.size()){
 					index++;
-					if(!repo[0].equals(resultList.get(index+1)[0])){
+					if(!repo[0].equals(resultList.get(index)[0])){
 						break;
 					}
 				}else{

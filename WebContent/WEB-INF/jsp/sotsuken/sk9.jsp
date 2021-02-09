@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>報告一覧</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/gamen9.css">
 </head>
 <body>
 	<%	
@@ -16,13 +14,6 @@
 		List<String[]> resultList = (List<String[]>) request.getSession().getAttribute("resultList");
 		List<String> task_name = (List<String>) request.getAttribute("task_name");
 	%>
-
-	<a href="#" class="btn-flat-simple"><i class="fa fa-caret-right"></i>戻る</a>
-	<div class="UserName" align="right">UserName</div>
-	<!--ログインのユーザー名を取得し表示する  -->
-	<div class="Name">
-		<p></p>
-	</div>
 	<h1><%=pro_name%></h1>
 	<%
 		if(resultList.size()==0){
@@ -38,7 +29,7 @@
 		int count = 0;
 		int index = 0;
 		label:for(int i=0;i<resultList.size();i++){
-			for(int c=0;i<task_name.size();c++){
+			for(int c=0;c<task_name.size();c++){
 			if(!resultList.get(index)[1].equals(task_name.get(count))){
 	%>
 				<h2><%= task_name.get(count)%></h2>
